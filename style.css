@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/* Variables */
+:root{
+    --primary: #e05353;
+    --secondary: #e1617f;
+    --accent: #f6c77d;
+    --light: #ffeeee;
+    --dark: #222222;
+}
+/* Globals Styles */
+.primaryBack{
+    background: var(--primary);
+}
+.secondaryBack{
+    background: var(--secondary);
+}
+.accentBack{
+    background: var(--accent);
+}
+.lightBack{
+    background: var(--light);
+}
+.darkBack{
+    background: var(--dark);
+}
+
+.primaryColor{
+    color: var(--primary);
+}
+.secondaryColor{
+    color: var(--secondary);
+}
+.accentColor{
+    color: var(--accent);
+}
+.lightColor{
+    color: var(--light);
+}
+.darkColor{
+    color: var(--dark);
+}
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
