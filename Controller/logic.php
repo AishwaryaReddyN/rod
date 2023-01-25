@@ -12,10 +12,10 @@ if (isset($_POST["register"])) {
     }
 }
 if (isset($_POST["login"])) {
-    $result = retrieveUser($conn, $username, $password);
+    $result = retrieveUser($conn, $email, $password);
     foreach ($result as $r) {
         if ($password == $r["password"]) {
-            header("Location: ./homepage.html");
+            header("Location: login.php");
         }
 
     }
