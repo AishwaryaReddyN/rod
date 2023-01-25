@@ -1,5 +1,5 @@
 <?php 
-    include "Views/components/header.php";
+    include "Views/Components/header.php";
 ?>
 
 <!-- Hero Section -->
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<?php include "Views/components/footer.php"; ?>
+<?php include "Views/Components/footer.php"; ?>

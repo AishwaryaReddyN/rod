@@ -1,13 +1,23 @@
 <?php
-
-function addUser($conn , $username, $email, $password){
-    $sql = "INSERT INTO users(`username`, `email`, `password`) VALUES('$username', '$email', '$password')";
-    $query = mysqli_query($conn, $sql);
-    return $query;
+function insertOne($conn, $dbName, $keys, $values){
+    $keysString = sqlString($keys, "`", ",");
+    $valuesString = sqlString($values, "'", ",");
+    $sql = "INSERT INTO users($keysString) VALUES($valuesString)";
+    $insertedFlag = mysqli_query($conn, $sql);
+    return $insertedFlag;
 }
-function retrieveUser($conn , $email, $password){
+function retrieveOne($conn, $email){
     $sql = "SELECT * FROM users WHERE email='$email'";
-    $query = mysqli_query($conn, $sql);
-    return $query;
+    $records = mysqli_query($conn, $sql);
+    return $records;
 }
- ?>
+
+// Miscellaneous
+function sqlString($array, $quote, $delimeter){
+    $newString = "";
+    foreach ($array as $k) {
+        $newString = $newString . $quote . $k . $quote.$delimeter;
+    }
+    $newString = rtrim($newString, $delimeter);
+    return $newString;
+}
