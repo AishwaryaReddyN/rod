@@ -6,15 +6,15 @@
         </a>
 
         <div class="container d-flex align-tems-center justify-content-end">
-            <a href="#" class="nav-link px-2 align-self-center text-secondary">Appointments</a>
-            <a href="#" class="nav-link px-2 align-self-center text-secondary">HallBooking</a>
-            <a href="#" class="nav-link px-2 align-self-center text-secondary">Announcements</a>
-            <a href="#" class="nav-link px-2 align-self-center text-secondary me-3">FAQ</a>
+            <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/appointments.php') ?>" class="nav-link px-2 align-self-center text-secondary">Appointments</a>
+            <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php') ?>" class="nav-link px-2 align-self-center text-secondary">HallBooking</a>
+            <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/announcements.php') ?>" class="nav-link px-2 align-self-center text-secondary">Announcements</a>
+            <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/faq.php') ?>" class="nav-link px-2 align-self-center text-secondary me-3">FAQ</a>
             <?php if (!isset($_SESSION["username"])) { ?>
-                <a href="Views/loginSignUp.php" class="btn btn-danger fw-bolder">Login/Signup</a>
-            <?php }else{ ?>
+                <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/loginSignup.php') ?>" class="btn btn-danger fw-bolder">Login/Signup</a>
+            <?php } else { ?>
                 <form method="POST">
-                    <a href="./Views/user.php" class="rounded-circle py-3 px-3 m-0 text-danger"><i class="fa-solid fa-user"></i></a>
+                    <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/profile.php') ?>" class="btn btn-outline-danger text-decoration-none"><i class="fa-solid fa-user me-2"></i><?php echo $_SESSION['username']; ?></a>
                 </form>
             <?php } ?>
         </div>
