@@ -8,8 +8,11 @@ if (isset($_REQUEST["signup"])) {
     $email = $_POST["email"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $dept = $_POST["dept"];
-    if (!str_contains($email, "@sfc.ac.in")) {
-        $email = $email . "@sfc.ac.in";
+    if (str_contains($email, "@") && !str_contains($email, "@sfc.ac.in")) {
+        $name = explode("@", $email)[0];
+        $email = $name . "@sfc.ac.in";
+    } else if (!str_contains($email, "@sfc.ac.in")) {
+        $email = $name . "@sfc.ac.in";
     }
     $rows = retrieveOne($conn, $email);
     foreach ($rows as $r) {

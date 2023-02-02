@@ -16,7 +16,10 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/6646afcf22.js" crossorigin="anonymous"></script>
 
+    <!-- Base Stylesheet -->
     <link rel="stylesheet" href="<?php echo $_ENV['BASE_DIR'] . 'assets/css/style.css' ?>">
+    <!-- Calendar Stylesheet -->
+    <link rel="stylesheet" href="<?php echo $_ENV['BASE_DIR'] . 'assets/css/calendar.css' ?>">
 
 </head>
 
