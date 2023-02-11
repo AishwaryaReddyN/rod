@@ -700,7 +700,7 @@ class Calendar
 
             $today_class = ($running_day->format('Y-m-d') == $today->format('Y-m-d')) ? ' today' : '';
 
-            $calendar .= '<td class="clickable day cal-day cal-day-' . strtolower($running_day->format('l')) . ' ' . $class . $today_class . '" title="' . htmlentities($event_summary) . '">';
+            $calendar .= '<td class="clickable day cal-day cal-day-' . strtolower($running_day->format('l')) . ' ' . $class . $today_class . '" title="' . htmlentities($event_summary) . '" onclick=fetchDateBookings(' . htmlentities($running_day->format('Y-m-d')) . ')>';
 
             $calendar .= '<div class="cal-day-box">';
 

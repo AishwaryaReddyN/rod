@@ -1,7 +1,7 @@
 <?php
 include "../baseConfig.php";
 include $absoluteDir . "/db/db.php";
-include $absoluteDir . "/model/User.php";
+include $absoluteDir . "/model/baseModel.php";
 
 if (isset($_REQUEST["signup"])) {
     $username = $_POST["username"];
@@ -14,7 +14,7 @@ if (isset($_REQUEST["signup"])) {
     } else if (!str_contains($email, "@sfc.ac.in")) {
         $email = $name . "@sfc.ac.in";
     }
-    $rows = retrieveOne($conn, $email);
+    $rows = retrieveRecords($conn, 'users', [$email]);
     foreach ($rows as $r) {
         if ($email == $r["email"]) {
             header("Location: " . $_ENV['BASE_DIR'] . "views/loginSignup.php?error=userAlreadyExists");
@@ -29,7 +29,7 @@ if (isset($_REQUEST["signup"])) {
 if (isset($_REQUEST["login"])) {
     $inputEmail = $_POST["email"];
     $inputPassword = $_POST["password"];
-    $rows = retrieveOne($conn, $inputEmail);
+    $rows = retrieveRecords($conn, 'users', [$inputEmail]);
     foreach ($rows as $r) {
         if ($inputEmail == $r["email"]) {
             echo $inputEmail, $r['email'];
