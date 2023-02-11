@@ -8,12 +8,10 @@ include $absoluteDir . "views/components/header.php";
     <div class="row">
         <div class="col-3 d-flex align-items-center">
             <div>
-                <h1>Reception Office <b class="primaryColor">Digitization</b></h1>
+                <h1 class="primaryColor">Reception Office <b class="darkColor">Digitization</b></h1>
                 <p>To keep up with generational trends and make offices future ready, an organization should have a
                     balance of Human Resources and digitization. It will not only lessen the burden for the
                     receptionist but also allows them to multitask.</p>
-
-                <button class="btn btn-outline-dark">Know More</button>
             </div>
         </div>
         <div class="col-6">
@@ -24,22 +22,22 @@ include $absoluteDir . "views/components/header.php";
                 <div class="d-flex d-align-items-center justify-content-start my-5">
                     <i class="fa-solid fa-calendar-check fa-3x primaryColor align-self-center"></i>
                     <div>
-                        <h4 class="ps-2 m-0 align-self-center">Appointments</h4>
-                        <h6 class="ps-2 m-0 align-self-center">To book an appointment to meet the principal </h6>
+                        <h4 class="ps-2 m-0 align-self-center darkColor fw-bold">Appointments</h4>
+                        <h6 class="ps-2 m-0 align-self-center text-body-secondary">To book an appointment to meet the principal </h6>
                     </div>
                 </div>
                 <div class="d-flex d-align-items-center justify-content-start my-5">
                     <i class="fa-solid fa-people-roof fa-3x primaryColor align-self-center"></i>
                     <div>
                         <h4 class="ps-2 m-0 align-self-center">Hall Bookings</h4>
-                        <h6 class="ps-2 m-0 align-self-center">To book the desired hall for events </h6>
+                        <h6 class="ps-2 m-0 align-self-center text-body-secondary">To book the desired hall for events </h6>
                     </div>
                 </div>
                 <div class="d-flex d-align-items-center justify-content-start my-5">
                     <i class="fa-solid fa-bullhorn fa-3x primaryColor align-self-center"></i>
                     <div>
                         <h4 class="ps-2 m-0 align-self-center">Announcements</h4>
-                        <h6 class="ps-2 m-0 align-self-center">Announcements made simpler </h6>
+                        <h6 class="ps-2 m-0 align-self-center text-body-secondary">Announcements made simpler </h6>
                     </div>
                 </div>
             </div>

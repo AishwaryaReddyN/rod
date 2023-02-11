@@ -634,7 +634,15 @@ class Calendar
 
         $calendar .= '<th colspan="' . $colspan . '">';
 
-        $calendar .= $this->months[strtolower($date->format('F'))] . ' ' . $date->format('Y');
+        $calendar .= '<form method="POST">';
+
+        $calendar .= '<button type="submit" name="decrementMonth" class="text-decoration-none baseHover darkColor btn btn-transparent"><i class="fa-solid fa-angles-left me-2"></i></button>';
+
+        $calendar .= '<button type="submit" name="today" class="text-decoration-none baseHover accentColor btn btn-transparent fs-4">' . $this->months[strtolower($date->format('F'))] . ' ' . $date->format('Y') . '</button>';
+
+        $calendar .= '<button type="submit" name="incrementMonth" class="text-decoration-none baseHover darkColor btn btn-transparent"><i class="fa-solid fa-angles-right me-2"></i></button>';
+
+        $calendar .= '</form>';
 
         $calendar .= '</th>';
 
@@ -652,6 +660,8 @@ class Calendar
         $calendar .= '</thead>';
 
         $calendar .= '<tbody>';
+
+        $calendar .= '<form method="GET">';
 
         $week = 1;
         $calendar .= '<tr class="cal-week-' . $week . '">';
@@ -687,7 +697,7 @@ class Calendar
                         # is the current day in between the start and end of the event
                     } elseif (
                         $running_day->getTimestamp() > $event->start->getTimestamp()
-                        && $running_day->getTimestamp() <    $event->end->getTimestamp()
+                        && $running_day->getTimestamp() < $event->end->getTimestamp()
                     ) {
                         $class .= $event->mask ? ' mask' : '';
 
@@ -700,7 +710,9 @@ class Calendar
 
             $today_class = ($running_day->format('Y-m-d') == $today->format('Y-m-d')) ? ' today' : '';
 
-            $calendar .= '<td class="clickable day cal-day cal-day-' . strtolower($running_day->format('l')) . ' ' . $class . $today_class . '" title="' . htmlentities($event_summary) . '" onclick=fetchDateBookings(' . htmlentities($running_day->format('Y-m-d')) . ')>';
+            $calendar .= '<td class="day cal-day cal-day-' . strtolower($running_day->format('l')) . ' ' . $class . $today_class . '" title="' . htmlentities($event_summary) . '")>';
+
+            $calendar .= '<button type="submit" name="hallBookingDate" value="' . htmlentities($running_day->format('Y-m-d')) . '" class="text-decoration-none baseHover darkColor btn btn-transparent">';
 
             $calendar .= '<div class="cal-day-box">';
 
@@ -713,6 +725,8 @@ class Calendar
             $calendar .= $event_summary;
 
             $calendar .= '</div>';
+
+            $calendar .= '</button>';
 
             $calendar .= '</td>';
 
@@ -754,6 +768,8 @@ class Calendar
         }
 
         $calendar .= '</tr>';
+
+        $calendar .= '</form>';
 
         $calendar .= '</tbody>';
 
@@ -905,7 +921,7 @@ class Calendar
                             # is the current day in between the start and end of the event
                         } elseif (
                             $date->getTimestamp() > $event->start->getTimestamp()
-                            && $date->getTimestamp() <    $event->end->getTimestamp()
+                            && $date->getTimestamp() < $event->end->getTimestamp()
                         ) {
                             $class .= $event->mask ? ' mask' : '';
 

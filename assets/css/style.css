@@ -2,10 +2,12 @@
 
 /* Variables */
 :root {
-  --primary: #e05353;
-  --secondary: #fbe0e0;
-  --light: #ffeeee;
-  --dark: #222222;
+  --primary: #b34734;
+  --secondary: #7e2424;
+  --accent: #2486be;
+  --light: #ffffff;
+  --lightAccent: #f1eded;
+  --dark: #2d3342;
 }
 /* Globals Styles */
 .primaryBack {
@@ -14,8 +16,14 @@
 .secondaryBack {
   background: var(--secondary);
 }
+.accentBack {
+  background: var(--accent);
+}
 .lightBack {
   background: var(--light);
+}
+.lightAccentBack {
+  background: var(--lightAccent);
 }
 .darkBack {
   background: var(--dark);
@@ -27,8 +35,14 @@
 .secondaryColor {
   color: var(--secondary);
 }
+.accentColor {
+  color: var(--accent);
+}
 .lightColor {
   color: var(--light);
+}
+.lightAccentColor {
+  color: var(--lightAccent);
 }
 .darkColor {
   color: var(--dark);
@@ -42,16 +56,20 @@ h1 h2 h3 h4 h5 h6 {
   font-family: "Roboto Slab";
 }
 
+.baseHover:hover{
+  color: var(--secondary) !important;
+}
+
 /* Bootstrap Overwriting */
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: var(--light);
-  background-color: var(--primary);
+  color: var(--light) !important;
+  background-color: var(--primary) !important;
 }
 
 .nav-link {
-  color: var(--dark);
+  color: var(--dark) !important;
 }
 .nav-link:hover {
-  color: var(--primary);
+  color: var(--secondary) !important;
 }

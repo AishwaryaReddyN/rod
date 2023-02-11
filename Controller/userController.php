@@ -29,12 +29,13 @@ if (isset($_REQUEST["signup"])) {
 if (isset($_REQUEST["login"])) {
     $inputEmail = $_POST["email"];
     $inputPassword = $_POST["password"];
-    $rows = retrieveRecords($conn, 'users', [$inputEmail]);
+    $rows = retrieveRecords($conn, 'users', ['email' => $inputEmail]);
     foreach ($rows as $r) {
         if ($inputEmail == $r["email"]) {
             echo $inputEmail, $r['email'];
             if (password_verify($inputPassword, $r["password"])) {
                 $_SESSION["username"] = $r["username"];
+                $_SESSION["userId"] = $r["id"];
                 header("Location:" . $_ENV['BASE_DIR']);
                 exit();
             } else {

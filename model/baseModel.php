@@ -9,9 +9,8 @@ function insertOne($conn, $dbName, $keys, $values)
 }
 function retrieveRecords($conn, $dbName, $values)
 {
-    $valuesString = sqlStringWithValues($values, "`", "\"");
+    $valuesString = sqlStringWithValues($values, "`", "'", " AND ");
     $sql = "SELECT * FROM $dbName WHERE $valuesString";
-    var_dump($sql);
     $records = mysqli_query($conn, $sql);
     return $records;
 }
@@ -27,12 +26,40 @@ function sqlString($array, $quote, $delimeter)
     return $newString;
 }
 
-function sqlStringWithValues($array, $quote, $delimeter)
+function sqlStringWithValues($array, $quote, $delimeter, $seperator)
 {
     $newString = "";
+
     foreach ($array as $k => $v) {
-        $newString = $newString . $quote . $k . $quote . "=" . $quote . $v . $quote . $delimeter;
+        if (count($array) > 1) {
+            $newString = $newString . $quote . $k . $quote . "=" . $delimeter . $v . $delimeter . $seperator;
+        } else {
+            $newString = $newString . $quote . $k . $quote . "=" . $delimeter . $v . $delimeter;
+        }
     }
-    $newString = rtrim($newString, $delimeter);
+    if (count($array) > 1) {
+        $newString = rtrim($newString, $seperator);
+    }
     return $newString;
+}
+
+function convertMonthToDate($hallMonth, $mode)
+{
+    $monthTextToNum = array(
+        "jan" => "01",
+        "feb" => "02",
+        "mar" => "03",
+        "apr" => "04",
+        "may" => "05",
+        "jun" => "06",
+        "jul" => "07",
+        "aug" => "08",
+        "sep" => "09",
+        "oct" => "10",
+        "nov" => "11",
+        "dec" => "12"
+    );
+    if ($mode == "start") {
+        return "01-" . $monthTextToNum[$hallMonth] . "-";
+    }
 }

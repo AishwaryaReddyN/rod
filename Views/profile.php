@@ -6,7 +6,9 @@ include $absoluteDir . "controller/userController.php";
 
 <div class="container" style="min-height: 85vh;">
     <div class="my-5 d-flex align-items-center justify-content-between">
-        <h1>Hi <span class="primaryColor"><?php echo ($_SESSION["username"]) ?></span></h1>
+        <h1>Hi <span class="primaryColor">
+                <?php echo ($_SESSION["username"]) ?>
+            </span></h1>
         <div class="d-flex aling-items-center justify-content-center">
             <form method="POST">
                 <button class="btn btn-outline-primary me-2" name="updateUsername">Update Username</button>
@@ -15,11 +17,14 @@ include $absoluteDir . "controller/userController.php";
         </div>
     </div>
 
-    <div class="d-flex align-items-start secondaryBack p-3 rounded-3">
+    <div class="d-flex align-items-start lightAccentBack p-3 rounded-3">
         <div class="nav flex-column nav-pills me-3 p-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#appointments" type="button" role="tab" aria-selected="true">Appointments</button>
-            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#halls" type="button" role="tab" aria-selected="false">Hall Bookings</button>
-            <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#announcements" type="button" role="tab" aria-selected="false">Announcements</button>
+            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#appointments" type="button"
+                role="tab" aria-selected="true">Appointments</button>
+            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#halls"
+                type="button" role="tab" aria-selected="false">Hall Bookings</button>
+            <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#announcements"
+                type="button" role="tab" aria-selected="false">Announcements</button>
         </div>
         <div class="tab-content w-100 p-2">
             <div class="tab-pane fade show active" id="appointments" role="tabpanel">
