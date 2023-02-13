@@ -11,7 +11,6 @@ include $absoluteDir . "controller/userController.php";
             </span></h1>
         <div class="d-flex aling-items-center justify-content-center">
             <form method="POST">
-                <button class="btn btn-outline-primary me-2" name="updateUsername">Update Username</button>
                 <button class="btn btn-outline-dark" name="logout">Logout</button>
             </form>
         </div>

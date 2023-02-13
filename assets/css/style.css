@@ -6,7 +6,7 @@
   --secondary: #7e2424;
   --accent: #2486be;
   --light: #ffffff;
-  --lightAccent: #f1eded;
+  --lightAccent: #f5f2f2;
   --dark: #2d3342;
 }
 /* Globals Styles */
@@ -56,7 +56,7 @@ h1 h2 h3 h4 h5 h6 {
   font-family: "Roboto Slab";
 }
 
-.baseHover:hover{
+.baseHover:hover {
   color: var(--secondary) !important;
 }
 
@@ -72,4 +72,19 @@ h1 h2 h3 h4 h5 h6 {
 }
 .nav-link:hover {
   color: var(--secondary) !important;
+}
+
+.accordion {
+  --bs-accordion-border-width: 0px !important;
+}
+
+.accordion-button {
+  background-color: var(--lightAccent) !important;
+}
+
+.accordion-button:not(.collapsed) {
+  /* background-color: var(--light) !important; */
+  color: var(--primary);
+  font-weight: 500;
+  transition: 1s ease;
 }

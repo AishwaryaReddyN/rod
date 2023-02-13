@@ -661,7 +661,7 @@ class Calendar
 
         $calendar .= '<tbody>';
 
-        $calendar .= '<form method="GET">';
+        $calendar .= '<form method="POST">';
 
         $week = 1;
         $calendar .= '<tr class="cal-week-' . $week . '">';

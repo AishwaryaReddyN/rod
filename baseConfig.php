@@ -12,5 +12,5 @@ session_status() === PHP_SESSION_ACTIVE ?: session_start();
 $absoluteDir = $_SERVER['DOCUMENT_ROOT'] . $_ENV['BASE_DIR'];
 
 // Set Current month for calendar
-if (!$_SESSION['currentMonth'])
+if (!isset($_SESSION['currentMonth']))
     $_SESSION['currentMonth'] = 0;
