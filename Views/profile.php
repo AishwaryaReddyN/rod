@@ -1,7 +1,7 @@
 <?php
 include "../baseConfig.php";
 include $absoluteDir . "views/components/header.php";
-include $absoluteDir . "controller/userController.php";
+include $absoluteDir . "controller/profileController.php";
 ?>
 
 <div class="container" style="min-height: 85vh;">
@@ -18,12 +18,14 @@ include $absoluteDir . "controller/userController.php";
 
     <div class="d-flex align-items-start lightAccentBack p-3 rounded-3">
         <div class="nav flex-column nav-pills me-3 p-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#appointments" type="button"
-                role="tab" aria-selected="true">Appointments</button>
-            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#halls"
-                type="button" role="tab" aria-selected="false">Hall Bookings</button>
-            <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#announcements"
-                type="button" role="tab" aria-selected="false">Announcements</button>
+            <form method="POST">
+                <button class="nav-link" name="dashboardShowData" value="hallBookings" id="v-pills-profile-tab"
+                    data-bs-toggle="pill" data-bs-target="#halls" type="submit" role="tab" aria-selected="false">Hall
+                    Bookings</button>
+                <button class="nav-link" name="dashboardShowData" value="announcements" id="v-pills-disabled-tab"
+                    data-bs-toggle="pill" data-bs-target="#announcements" type="submit" role="tab"
+                    aria-selected="false">Announcements</button>
+            </form>
         </div>
         <div class="tab-content w-100 p-2">
             <div class="tab-pane fade show active" id="appointments" role="tabpanel">
@@ -33,29 +35,32 @@ include $absoluteDir . "controller/userController.php";
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Hall</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
+                            <th scope="col">Hall Name</th>
+                            <th scope="col">Booking Date</th>
+                            <th scope="col">Booking Time</th>
+                            <th scope="col">Booking Purpose</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        <?php if ($allHallBookings && !empty($allHallBookings)) {
+                            foreach ($allHallBookings as $hb) { ?>
+                                <tr>
+                                    <th>1</th>
+                                    <td>
+                                        <?php echo ucwords($hb['hall_name']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $hb['hall_booking_date']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $hb['hall_booking_time']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $hb['hall_booking_purpose']; ?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        } ?>
                     </tbody>
                 </table>
             </div>

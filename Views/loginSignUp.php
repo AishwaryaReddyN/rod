@@ -41,9 +41,34 @@ include $absoluteDir . "controller/userController.php";
                 </div>
                 <input type="password" required name="password" placeholder="Password" class="form-control mb-2">
                 <select class="form-select" required name="dept" aria-label="Default select example">
-                    <!-- Todo -->
-                    <!-- Need to add the remaining departments -->
-                    <option value="cse">Computer Science</option>
+                    <option value="BC">BIOCHEMISTRY</option>
+                    <option value="BT">BIOTECHNOLOGY</option>
+                    <option value="BMS">BMS</option>
+                    <option value="BOTANY">BOTANY</option>
+                    <option value="B.VOC">B.VOC</option>
+                    <option value="CHEMISTRY">CHEMISTRY</option>
+                    <option value="COMMERCE">COMMERCE</option>
+                    <option value="CS">COMPUTER SCIENCE</option>
+                    <option value="ECONOMICS">ECONOMICS</option>
+                    <option value="ELECTRONICS">ELECTRONICS</option>
+                    <option value="EVS">ENVIRONMENTAL SCIENCES</option>
+                    <option value="ENG">ENGLISH</option>
+                    <option value="FRENCH">FRENCH</option>
+                    <option value="HINDI">HINDI</option>
+                    <option value="HISTORY">HISTORY</option>
+                    <option value="MASSCOM">MASS COMMUNICATION</option>
+                    <option value="MATHS">MATHEMATICS</option>
+                    <option value="MICROBIOLOGY">MICROBIOLOGY</option>
+                    <option value="NUTRITION">NUTRITION</option>
+                    <option value="PHYSICS">PHYSICS</option>
+                    <option value="PS">POLITICAL SCIENCE</option>
+                    <option value="PUBLICADMIN">PUBLIC ADMINISTRATION</option>
+                    <option value="SANSKRIT">SANSKRIT</option>
+                    <option value="SOCIALMANAGEMENT">SOCIAL MANAGEMENT</option>
+                    <option value="STATISTICS">STATISTICS</option>
+                    <option value="TELUGU">TELUGU</option>
+                    <option value="ZOOLOGY">ZOOLOGY</option>
+
                 </select>
                 <button type="submit" name="signup" class="btn btn-outline-light my-3">Sign Up</button>
                 <p class="text-white-50">Already have an account? <a

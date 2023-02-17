@@ -48,8 +48,3 @@ if (isset($_REQUEST["login"])) {
         }
     }
 }
-
-if (isset($_REQUEST["logout"])) {
-    session_destroy();
-    header("Location:" . $_ENV['BASE_DIR']);
-}

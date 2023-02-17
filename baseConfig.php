@@ -14,3 +14,8 @@ $absoluteDir = $_SERVER['DOCUMENT_ROOT'] . $_ENV['BASE_DIR'];
 // Set Current month for calendar
 if (!isset($_SESSION['currentMonth']))
     $_SESSION['currentMonth'] = 0;
+
+// Table Names
+$usersTable = "users";
+$announcementsTable = "announcements";
+$hallBookingsTable = "hall_bookings";

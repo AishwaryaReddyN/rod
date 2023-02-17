@@ -4,7 +4,6 @@ function insertOne($conn, $dbName, $keys, $values)
     $keysString = sqlString($keys, "`", ",");
     $valuesString = sqlString($values, "'", ",");
     $sql = "INSERT INTO $dbName($keysString) VALUES($valuesString)";
-    var_dump($sql);
     $insertedFlag = mysqli_query($conn, $sql);
     return $insertedFlag;
 }
@@ -15,6 +14,14 @@ function retrieveRecords($conn, $dbName, $values)
     $records = mysqli_query($conn, $sql);
     return $records;
 }
+
+function retrieveAllRecords($conn, $dbName)
+{
+    $sql = "SELECT * FROM $dbName";
+    $records = mysqli_query($conn, $sql);
+    return $records;
+}
+
 
 // Miscellaneous
 function sqlString($array, $quote, $delimeter)
