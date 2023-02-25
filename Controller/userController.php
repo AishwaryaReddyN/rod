@@ -14,7 +14,7 @@ if (isset($_REQUEST["signup"])) {
     } else if (!str_contains($email, "@sfc.ac.in")) {
         $email = $name . "@sfc.ac.in";
     }
-    $rows = retrieveRecords($conn, 'users', [$email]);
+    $rows = retrieveRecords($conn, 'users', ["email" => $email]);
     foreach ($rows as $r) {
         if ($email == $r["email"]) {
             header("Location: " . $_ENV['BASE_DIR'] . "views/loginSignup.php?error=userAlreadyExists");

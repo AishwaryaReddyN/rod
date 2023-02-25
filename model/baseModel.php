@@ -11,6 +11,7 @@ function retrieveRecords($conn, $dbName, $values)
 {
     $valuesString = sqlStringWithValues($values, "`", "'", " AND ");
     $sql = "SELECT * FROM $dbName WHERE $valuesString";
+    echo $sql;
     $records = mysqli_query($conn, $sql);
     return $records;
 }

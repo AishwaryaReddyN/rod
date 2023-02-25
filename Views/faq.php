@@ -27,13 +27,14 @@ include $absoluteDir . "controller/userController.php";
             <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed rounded-3 border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    How to apply for St.Francis College?
+                    How to apply for St. Francis College?
                 </button>
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <p><a href="#" class="primaryColor text-decoration-none">Click Here</a> for the submission of
+                    <p><a href="https://www.sfc.ac.in/admissions.php" class="primaryColor text-decoration-none">Click
+                            Here</a> for the submission of
                         application. The application fee is Rs.500/- for the candidates who are applying.</p>
                 </div>
             </div>
@@ -42,7 +43,7 @@ include $absoluteDir . "controller/userController.php";
             <h2 class="accordion-header" id="flush-headingTwo">
                 <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    How can I get admitted into ST. Francis College?
+                    How can I get admitted into St. Francis College?
                 </button>
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
@@ -58,13 +59,13 @@ include $absoluteDir . "controller/userController.php";
             <h2 class="accordion-header" id="flush-headingThree">
                 <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    What is the dress code at St.Francis?
+                    What is the dress code at St. Francis?
                 </button>
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <p>The dress code at st .francis is full length kurtis. However , sleeveless tops , shorttops are
+                    <p>The dress code at St. Francis is full length kurtis. However , sleeveless tops , shorttops are
                         not encouraged.</p>
                 </div>
             </div>
@@ -87,7 +88,7 @@ include $absoluteDir . "controller/userController.php";
             <h2 class="accordion-header" id="flush-headingFive">
                 <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                    Is St.Francis Autonomous?
+                    Is St. Francis Autonomous?
                 </button>
             </h2>
             <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive"
@@ -102,7 +103,7 @@ include $absoluteDir . "controller/userController.php";
             <h2 class="accordion-header" id="flush-headingSix">
                 <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                    What are the placement opportunities at St.Francis?
+                    What are the placement opportunities at St. Francis?
                 </button>
             </h2>
             <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix"
@@ -118,7 +119,7 @@ include $absoluteDir . "controller/userController.php";
             <h2 class="accordion-header" id="flush-headingSeven">
                 <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
-                    What is the fee structure of St.Francis?
+                    What is the fee structure of St. Francis?
                 </button>
             </h2>
             <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven"
@@ -131,7 +132,58 @@ include $absoluteDir . "controller/userController.php";
                 </div>
             </div>
         </div>
+        <div class="accordion-item my-1">
+            <h2 class="accordion-header" id="flush-headingEight">
+                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                    What is the eligibilty criteria for admissions?
+                </button>
+            </h2>
+            <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <p><a href="https://www.sfc.ac.in/admissions.php" class="primaryColor text-decoration-none">Click
+                            Here</a> to view the eligibility criteria for various courses.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item my-1">
+            <h2 class="accordion-header" id="flush-headingNine">
+                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                    Is parking facility available in the campus?
+                </button>
+            </h2>
+            <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <p>students are allowed to park only two wheeler inside the campus, while staff can park two and
+                        four wheeler inside campus
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item my-1">
+            <h2 class="accordion-header" id="flush-headingTen">
+                <button class="accordion-button collapsed rounded-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapsedTen">
+                    What extracurricular opportunities are available?
+                </button>
+            </h2>
+            <div id="flush-collapseTen" class="accordion-collapse collapse" aria-labelledby="flush-headingTen"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <p>The college provides various extracurricular oppurtunities such as NCC, NSS, sports from which it
+                        is mandatory for first year UG students to opt one of these.St. Francis also provides a broad
+                        assortment of other activities- artistic, musical,political and social.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
+</div>
 </div>
 
 <?php include $absoluteDir . "views/components/footer.php"; ?>
