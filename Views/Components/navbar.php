@@ -9,7 +9,6 @@
         </button>
 
         <div class="collapse navbar-collapse d-flex-lg align-tems-center justify-content-end" id="navBarContent">
-            <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/appointments.php') ?>" class="nav-link py-2 py-lg-0 px-2 align-self-center text-secondary">Appointments</a>
             <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php') ?>" class="nav-link py-2 py-lg-0 px-2 align-self-center text-secondary">Bookings</a>
             <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/announcements.php') ?>" class="nav-link py-2 py-lg-0 px-2 align-self-center text-secondary">Announcements</a>
             <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/faq.php') ?>" class="nav-link py-2 py-lg-0 px-2 align-self-center text-secondary me-3">FAQ</a>

@@ -84,7 +84,7 @@ include $absoluteDir . "controller/dashboardController.php";
             <div class="tab-pane fade" id="halls" role="tabpanel">
                 <h3>Booked Venues</h3>
                 <hr>
-                <table class="table table-dark table-hover rounded-3">
+                <table class="table table-hover rounded-3">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -117,7 +117,9 @@ include $absoluteDir . "controller/dashboardController.php";
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="announcements" role="tabpanel">Announcements</div>
+            <div class="tab-pane fade" id="announcements" role="tabpanel">
+
+            </div>
         </div>
     </div>
 </div>

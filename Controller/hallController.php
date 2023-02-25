@@ -32,6 +32,11 @@ if (isset($_REQUEST['bookHall'])) {
     $hallBookingPurpose = $_REQUEST['hallBookingPurpose'];
     $userId = $_SESSION['userId'];
     insertOne($conn, "hall_bookings", ["hall_name", "hall_booking_date", "hall_booking_time", "hall_booking_purpose", "user_id"], [$hallName, $hallBookingDate, $hallBookingTime, $hallBookingPurpose, $userId]);
+
+    // Clear required session variables for Hall Booking
+    unset($_SESSION['hallName']);
+    unset($_SESSION['currentMonth']);
+
     header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Booking%20Successful!&alertSubText=Your%20booking%20has%20been%20made%20successfully");
     exit();
 }
