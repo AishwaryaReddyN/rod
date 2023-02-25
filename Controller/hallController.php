@@ -5,9 +5,10 @@ include $absoluteDir . "/model/baseModel.php";
 include $absoluteDir . "/model/hallModel.php";
 
 $showDate = false;
+$bookedTimeSlots = [];
 
-if (isset($_REQUEST["searchHalls"])) {
-    $hallName = $_REQUEST["hallName"];
+if (isset($_REQUEST["searchHalls"]) || isset($_SESSION['hallName'])) {
+    $hallName = isset($_REQUEST["searchHalls"]) ? $_REQUEST["hallName"] : $_SESSION['hallName'];
 
     // Current timestamp is assumed, so these find first and last day of THIS month
     $first_day_this_month = date('Y-m-01');
@@ -15,12 +16,14 @@ if (isset($_REQUEST["searchHalls"])) {
 
     $searchedHalls = retrieveHallBookings($conn, $hallName, $first_day_this_month, $last_day_this_month);
 
-    $_SESSION['hallName'] = $_REQUEST['hallName'];
+    if (!empty($hallName)) {
+        $_SESSION['hallName'] = $hallName;
+    }
 }
 
 if (isset($_REQUEST['bookHall'])) {
     if (!isset($_SESSION['userId'])) {
-        header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?error=notLoggedIn");
+        header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=error&alertMainText=Not%20Logged%20In!&alertSubText=Please%20login%20and%20try%20again");
         exit();
     }
     $hallName = $_SESSION['hallName'];
@@ -29,7 +32,7 @@ if (isset($_REQUEST['bookHall'])) {
     $hallBookingPurpose = $_REQUEST['hallBookingPurpose'];
     $userId = $_SESSION['userId'];
     insertOne($conn, "hall_bookings", ["hall_name", "hall_booking_date", "hall_booking_time", "hall_booking_purpose", "user_id"], [$hallName, $hallBookingDate, $hallBookingTime, $hallBookingPurpose, $userId]);
-    header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?message=hallBooked");
+    header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Booking%20Successful!&alertSubText=Your%20booking%20has%20been%20made%20successfully");
     exit();
 }
 
@@ -52,9 +55,9 @@ if (isset($_POST['today'])) {
     header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php");
 }
 
-if (isset($_REQUEST['hallBookingDate'])) {
-    // $_SESSION["hallBookingDate"] = $_REQUEST['hallBookingDate'];
-    // $hallBookingDayData = retrieveHallBookings($conn, $_REQUEST['hallBookingDate'], $_SESSION['hallName']);
-    $showDate = true;
-    // header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?calendarAction=showDate");
+if (isset($_REQUEST["hallBookingDate"])) {
+    $rows = retrieveTimeSlots($conn, $_REQUEST["hallBookingDate"], $_SESSION['hallName']);
+    foreach ($rows as $row) {
+        $bookedTimeSlots[] = $row['hall_booking_time'];
+    }
 }

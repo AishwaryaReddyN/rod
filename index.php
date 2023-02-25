@@ -1,8 +1,12 @@
 <?php
 include "baseConfig.php";
 include $absoluteDir . "views/components/header.php";
+include $absoluteDir . "views/components/navbar.php";
 ?>
 
+<div class="container">
+    <?php include $absoluteDir . "views/components/alert.php"; ?>
+</div>
 <!-- Hero Section -->
 <div class="container d-flex align-items-center mt-5 mt-lg-0 text-cter" style="min-height: 85vh;">
     <div class="row">

@@ -8,6 +8,6 @@ INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_tim
 INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `user_id`) VALUES('capitanio', '2023/02/25', '11:20-12:10', 'Dance Practice', 10);
 
 -- Announcements Seeder
-INSERT INTO `announcements` (`announcement_message`, `announcement_time`, `user_id`) VALUES('This is a sample message', '10:30', 1);
-INSERT INTO `announcements` (`announcement_message`, `announcement_time`, `user_id`) VALUES('This is a sample message2', '14:19', 3);
-INSERT INTO `announcements` (`announcement_message`, `announcement_time`, `user_id`) VALUES('This is a sample message3', '05:10', 1);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `user_id`) VALUES('Announcement Title', 'This is a sample message', '2023/02/25', '10:30', 1);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `user_id`) VALUES('Announcement Title', 'This is a sample message2', '2023/02/25', '14:19', 3);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `user_id`) VALUES('Announcement Title', 'This is a sample message3', '2023/02/15', '05:10', 1);

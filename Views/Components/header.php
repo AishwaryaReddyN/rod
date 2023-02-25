@@ -24,5 +24,3 @@
 </head>
 
 <body class="lightBack">
-    <div>
-        <?php include $absoluteDir . "views/components/navbar.php"; ?>

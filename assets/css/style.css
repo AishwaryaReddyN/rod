@@ -3,6 +3,7 @@
 /* Variables */
 :root {
   --primary: #b34734;
+  --primaryLightAccent: #ffedea;
   --secondary: #7e2424;
   --accent: #2486be;
   --light: #ffffff;
@@ -12,6 +13,9 @@
 /* Globals Styles */
 .primaryBack {
   background: var(--primary);
+}
+.primaryLightAccentBack {
+  background: var(--primaryLightAccent);
 }
 .secondaryBack {
   background: var(--secondary);
@@ -31,6 +35,9 @@
 
 .primaryColor {
   color: var(--primary);
+}
+.primaryLightAccentColor {
+  color: var(--primaryLightAccent);
 }
 .secondaryColor {
   color: var(--secondary);
@@ -79,12 +86,19 @@ h1 h2 h3 h4 h5 h6 {
 }
 
 .accordion-button {
-  background-color: var(--lightAccent) !important;
+  background-color: none !important;
+}
+
+.accordion-button:focus {
+    outline: none !important;
+    border-color: none !important;
+    box-shadow: none !important;
 }
 
 .accordion-button:not(.collapsed) {
-  /* background-color: var(--light) !important; */
-  color: var(--primary);
+  background-color: var(--light) !important;
+  outline: none !important;
+  /* color: var(--primary); */
   font-weight: 500;
   transition: 1s ease;
 }
