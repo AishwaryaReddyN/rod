@@ -11,16 +11,15 @@ include $absoluteDir . "controller/userController.php";
         <?php include $absoluteDir . "views/components/alert.php"; ?>
 
         <?php if (isset($_REQUEST['userType']) && $_REQUEST['userType'] == 'newUser') { ?>
-            <form method="POST" class="darkBack rounded-3 p-3 w-30">
-                <h2 class="text-center lightColor my-3">Sign Up</h2>
+            <form method="POST" class="primaryLightAccentBack shadow rounded-3 p-3 w-30">
+                <h2 class="text-center darkColor my-3">Sign Up</h2>
                 <input type="text" required name="username" placeholder="Username" class="form-control mb-2">
                 <div class="mb-2">
                     <div class="input-group">
-                        <input type="text" required name="email" class="form-control" placeholder="Email" title="The mail id must contain sfc domain">
+                        <input type="text" required name="email" class="form-control" placeholder="Email"
+                            title="The mail id must contain sfc domain">
                         <span class="input-group-text">@sfc.ac.in</span>
                     </div>
-                    <small class="ms-1 text-white-50"><span class="primaryColor">Note: </span>Input the Email Id before
-                        @sfc.ac.in</small>
                 </div>
                 <input type="password" required name="password" placeholder="Password" class="form-control mb-2">
                 <select class="form-select" required name="dept" aria-label="Default select example">
@@ -53,16 +52,21 @@ include $absoluteDir . "controller/userController.php";
                     <option value="ZOOLOGY">ZOOLOGY</option>
 
                 </select>
-                <button type="submit" name="signup" class="btn btn-outline-light my-3">Sign Up</button>
-                <p class="text-white-50">Already have an account? <a href="<?php echo $_ENV['BASE_DIR'] . 'views/loginSignup.php' ?>" class="primaryColor text-decoration-none">Login Now</a></p>
+                <button type="submit" name="signup" class="btn btn-outline-dark my-3">Sign Up</button>
+                <p class="text-black-50">Already have an account? <a
+                        href="<?php echo $_ENV['BASE_DIR'] . 'views/loginSignup.php' ?>"
+                        class="primaryColor text-decoration-none">Login Now</a></p>
             </form>
         <?php } else { ?>
-            <form method="POST" class="darkBack rounded-3 p-3 w-30 my-auto">
-                <h2 class="text-center lightColor my-3">Log In</h2>
-                <input type="text" class="form-control mb-2" name="email" placeholder="Email" title="The mail id must contain sfc domain">
+            <form method="POST" class="primaryLightAccentBack shadow rounded-3 p-3 w-30 my-auto">
+                <h2 class="text-center darkColor my-3">Log In</h2>
+                <input type="text" class="form-control mb-2" name="email" placeholder="Email"
+                    title="The mail id must contain sfc domain">
                 <input type="password" name="password" placeholder="Password" class="form-control mb-2">
-                <button type="submit" name="login" class="btn btn-outline-light my-3 d-block">Login</button>
-                <p class="text-white-50">Don't have an account yet? <a href="<?php echo $_ENV['BASE_DIR'] . 'views/loginSignup.php?userType=newUser' ?>" class="primaryColor text-decoration-none">Signup Now</a></p>
+                <button type="submit" name="login" class="btn btn-outline-dark my-3 d-block">Login</button>
+                <p class="text-black-50">Don't have an account yet? <a
+                        href="<?php echo $_ENV['BASE_DIR'] . 'views/loginSignup.php?userType=newUser' ?>"
+                        class="primaryColor text-decoration-none">Signup Now</a></p>
             </form>
         <?php } ?>
     </div>

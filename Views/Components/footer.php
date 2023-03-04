@@ -12,9 +12,14 @@
             </div>
 
             <div class="mt-3 mt-md-0">
-                <a class="text-body-tertiary baseHover pe-2" href="https://www.instagram.com/st.franciscollegeforwomen/"><i class="fa-brands fa-instagram"></i></a>
-                <a class="text-body-tertiary baseHover pe-2" href="https://www.youtube.com/@st.franciscollegeforwomena6644"><i class="fa-brands fa-youtube"></i></a>
-                <a class="text-body-tertiary baseHover" href="https://www.facebook.com/stfranciscollege/"><i class="fa-brands fa-facebook"></i></a>
+                <a class="text-body-tertiary baseHover pe-2"
+                    href="https://www.instagram.com/st.franciscollegeforwomen/"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a class="text-body-tertiary baseHover pe-2"
+                    href="https://www.youtube.com/@st.franciscollegeforwomena6644"><i
+                        class="fa-brands fa-youtube"></i></a>
+                <a class="text-body-tertiary baseHover" href="https://www.facebook.com/stfranciscollege/"><i
+                        class="fa-brands fa-facebook"></i></a>
             </div>
         </div>
     </div>

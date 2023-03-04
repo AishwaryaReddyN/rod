@@ -4,7 +4,7 @@
 :root {
   --primary: #b34734;
   --primaryLightAccent: #ffedea;
-  --secondary: #7e2424;
+  --secondary: #fbbbbb;
   --accent: #2486be;
   --light: #ffffff;
   --lightAccent: #f5f2f2;
@@ -90,9 +90,9 @@ h1 h2 h3 h4 h5 h6 {
 }
 
 .accordion-button:focus {
-    outline: none !important;
-    border-color: none !important;
-    box-shadow: none !important;
+  outline: none !important;
+  border-color: none !important;
+  box-shadow: none !important;
 }
 
 .accordion-button:not(.collapsed) {

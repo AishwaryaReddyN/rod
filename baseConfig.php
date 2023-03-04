@@ -9,7 +9,7 @@ $dotenv->load();
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
 // Set Base Directory
-$absoluteDir = $_SERVER['DOCUMENT_ROOT'] . $_ENV['BASE_DIR'];
+$absoluteDir = $_SERVER['DOCUMENT_ROOT'] . $_ENV['BASE_DIR']; //xampp/htdocs/rod - path in system
 
 // Set Current month for calendar
 if (!isset($_SESSION['currentMonth']))

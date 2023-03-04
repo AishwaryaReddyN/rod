@@ -1,23 +1,23 @@
 <?php
-function insertOne($conn, $dbName, $keys, $values)
+function insertOne($conn, $tableName, $keys, $values)
 {
     $keysString = sqlString($keys, "`", ",");
     $valuesString = sqlString($values, "'", ",");
-    $sql = "INSERT INTO $dbName($keysString) VALUES($valuesString)";
+    $sql = "INSERT INTO $tableName($keysString) VALUES($valuesString)";
     $insertedFlag = mysqli_query($conn, $sql);
     return $insertedFlag;
 }
-function retrieveRecords($conn, $dbName, $values)
+function retrieveRecords($conn, $tableName, $values)
 {
     $valuesString = sqlStringWithValues($values, "`", "'", " AND ");
-    $sql = "SELECT * FROM $dbName WHERE $valuesString";
+    $sql = "SELECT * FROM $tableName WHERE $valuesString";
     $records = mysqli_query($conn, $sql);
     return $records;
 }
 
-function retrieveAllRecords($conn, $dbName)
+function retrieveAllRecords($conn, $tableName)
 {
-    $sql = "SELECT * FROM $dbName";
+    $sql = "SELECT * FROM $tableName";
     $records = mysqli_query($conn, $sql);
     return $records;
 }

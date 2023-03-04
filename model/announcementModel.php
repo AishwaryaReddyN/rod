@@ -15,3 +15,13 @@ function retrieveAnnouncementsByDate($conn, $date)
         return null;
     }
 }
+function retrieveAnnouncementsByDateRange($conn, $announcementsTable, $announcementsStartDate, $announcementsEndDate, $userId)
+{
+    if (!empty($userId)) {
+        $sql = "SELECT * FROM $announcementsTable WHERE `user_id` = $userId AND `announcement_date` BETWEEN '$announcementsStartDate' AND '$announcementsEndDate'";
+    } else {
+        $sql = "SELECT * FROM $announcementsTable WHERE `announcement_date` BETWEEN '$announcementsStartDate' AND '$announcementsEndDate'";
+    }
+    $records = mysqli_query($conn, $sql);
+    return $records;
+}

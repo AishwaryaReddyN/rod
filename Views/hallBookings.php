@@ -36,9 +36,11 @@ $allTimeSlots = ["8:00-8:50", "8:50-9:40", "9:40-10:30", "10:30-11:20", "11:20-1
 <div style="min-height: 81vh;">
     <!-- Breadcrumbs -->
     <div class="container mt-5">
-        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+            aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo $_ENV['BASE_DIR'] ?>" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo $_ENV['BASE_DIR'] ?>"
+                        class="text-decoration-none text-dark">Home</a></li>
                 <li class="breadcrumb-item text-body-secondary" aria-current="page">Bookings</li>
             </ol>
         </nav>
@@ -50,34 +52,39 @@ $allTimeSlots = ["8:00-8:50", "8:50-9:40", "9:40-10:30", "10:30-11:20", "11:20-1
 
     <div class="container">
         <div class="primaryLightAccentBack p-3 rounded-3">
-            <h2 class="fw-bold"><i class="fa-solid fa-bookmark primaryColor align-self-center me-2"></i>Book a Venue</h2>
+            <h2 class="fw-bold"><i class="fa-solid fa-bookmark primaryColor align-self-center me-2"></i>Book a Venue
+            </h2>
             <p class="text-body-secondary">Choose a venue, fix the date and make a booking.</p>
         </div>
 
         <div class="accordion accordion-flush lightAccentBack p-3 rounded mt-3 mb-5">
             <div class="accordion-item">
                 <h1 class="accordion-header" id="flush-headingOne">
-                    <h3 class="accordion-button <?php echo !empty($_SESSION['hallName']) ? 'collapsed' : null; ?>" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <h3 class="accordion-button <?php echo !empty($_SESSION['hallName']) ? 'collapsed' : null; ?>"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                        aria-expanded="false" aria-controls="flush-collapseOne">
                         <i class="fa-solid fa-people-roof primaryColor align-self-center me-2"></i>
                         Choose the Venue
                     </h3>
                 </h1>
-                <div id="flush-collapseOne" class="accordion-collapse collapse <?php echo empty($_SESSION['hallName']) ? 'show' : null; ?>" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseOne"
+                    class="accordion-collapse collapse <?php echo empty($_SESSION['hallName']) ? 'show' : null; ?>"
+                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body lightAccentBack">
                         <form method="POST">
                             <select class="form-select" name="hallName">
                                 <option value="auditorium" <?php if (isset($_SESSION['hallName']) && $_SESSION['hallName'] == 'auditorium') {
-                                                                echo 'selected';
-                                                            } ?>>Auditorium</option>
+                                    echo 'selected';
+                                } ?>>Auditorium</option>
                                 <option value="capitanio" <?php if (isset($_SESSION['hallName']) && $_SESSION['hallName'] == 'capitanio') {
-                                                                echo 'selected';
-                                                            } ?>>Capitanio Hall</option>
+                                    echo 'selected';
+                                } ?>>Capitanio Hall</option>
                                 <option value="gerosa" <?php if (isset($_SESSION['hallName']) && $_SESSION['hallName'] == 'gerosa') {
-                                                            echo 'selected';
-                                                        } ?>>Gerosa Hall</option>
+                                    echo 'selected';
+                                } ?>>Gerosa Hall</option>
                                 <option value="quadrangle" <?php if (isset($_SESSION['hallName']) && $_SESSION['hallName'] == 'quadrangle') {
-                                                                echo 'selected';
-                                                            } ?>>Quadrangle</option>
+                                    echo 'selected';
+                                } ?>>Quadrangle</option>
                             </select>
 
                             <button class="btn btn-outline-dark mt-3" name="searchHalls">Search</button>
@@ -87,31 +94,76 @@ $allTimeSlots = ["8:00-8:50", "8:50-9:40", "9:40-10:30", "10:30-11:20", "11:20-1
             </div>
             <div class="accordion-item" disabled>
                 <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                         <i class="fa-solid fa-cloud-sun primaryColor align-self-center me-2"></i> Fix the date
                     </button>
                 </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse <?php echo !empty($_SESSION['hallName']) ? 'show' : null; ?>" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseTwo"
+                    class="accordion-collapse collapse <?php echo !empty($_SESSION['hallName']) ? 'show' : null; ?>"
+                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        <?php if (!empty($searchedHalls)) {
-                            echo $calendar->draw(date('Y-m-d', strtotime($_SESSION['currentMonth'] . ' month')), 'blue');
-                        } ?>
+                        <div class="row">
+                            <div class="col-12 col-lg-7">
+                                <?php if (!empty($searchedHalls)) {
+                                    echo $calendar->draw(date('Y-m-d', strtotime($_SESSION['currentMonth'] . ' month')), 'blue');
+                                } ?>
+                            </div>
+                            <div class="col-12 col-lg-5">
+                                <h3 class="mt-3 mt-lg-0">Latest Bookings</h3>
+                                <?php if (!empty($latestHallBookings)) { ?>
+                                    <?php foreach ($latestHallBookings as $hbd) { ?>
+                                        <div
+                                            class="lightAccentBack px-2 py-3 my-2 rounded d-flex align-items-center justify-content-between">
+                                            <div class="mb-0">
+                                                <h5 class="m-0">
+                                                    <?php echo ucwords($hbd["hall_name"]) ?>
+                                                </h5>
+                                                <span>
+                                                    <?php echo $hbd["hall_booking_purpose"] ?>
+                                                </span>
+                                            </div>
+                                            <div class="text-dark m-0 fs-5">
+                                                <h6 class="m-0">
+                                                    <!-- <i class="fa-solid fa-calendar text-danger"></i> -->
+                                                    <?php echo $hbd["hall_booking_date"] ?>
+                                                </h6>
+                                                <small class="d-block fs-6">
+                                                    <!-- <i class="fa-solid fa-clock text-danger"></i> -->
+                                                    <?php echo $hbd["hall_booking_time"] ?>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <div class="shadow p-3 lightAccentBack rounded">
+                                        <h5 class="fw-bold">No Bookings</h5>
+                                        <p>There are no bookings for today. Please check again later.</p>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                         <i class="fa-solid fa-square-check primaryColor align-self-center me-2"></i> Make Booking
                     </button>
                 </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse <?php echo !empty($_REQUEST['hallBookingDate']) ? 'show' : null; ?>" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseThree"
+                    class="accordion-collapse collapse <?php echo !empty($_REQUEST['hallBookingDate']) ? 'show' : null; ?>"
+                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <form method="POST">
                             <div class="row">
                                 <div class="col-6">
                                     <label class="fw-bold">Date</label>
-                                    <input type="text" readonly class="form-control lightAccentBack" name="hallBookingDate" value="<?php echo isset($_REQUEST['hallBookingDate']) ? $_REQUEST['hallBookingDate'] : 'No Date Selected'; ?>">
+                                    <input type="text" readonly class="form-control lightAccentBack"
+                                        name="hallBookingDate"
+                                        value="<?php echo isset($_REQUEST['hallBookingDate']) ? $_REQUEST['hallBookingDate'] : 'No Date Selected'; ?>">
                                 </div>
                                 <div class="col-6">
                                     <label class="fw-bold">Time Slot</label>
@@ -121,11 +173,12 @@ $allTimeSlots = ["8:00-8:50", "8:50-9:40", "9:40-10:30", "10:30-11:20", "11:20-1
                                                 if (!in_array($ats, $bookedTimeSlots)) { ?>
                                                     <option value="<?php echo $ats; ?>"><?php echo $ats; ?></option>
                                                 <?php } else { ?>
-                                                    <option disabled class="lightAccentBack primaryColor" value="<?php echo $ats; ?>"><?php echo $ats; ?></option>
+                                                    <option disabled class="lightAccentBack primaryColor"
+                                                        value="<?php echo $ats; ?>"><?php echo $ats; ?></option>
                                                 <?php }
                                             } else { ?>
                                                 <option value="<?php echo $ats; ?>"><?php echo $ats; ?></option>}
-                                        <?php }
+                                            <?php }
                                         } ?>
                                     </select>
 
@@ -133,7 +186,8 @@ $allTimeSlots = ["8:00-8:50", "8:50-9:40", "9:40-10:30", "10:30-11:20", "11:20-1
                             </div>
                             <div class="mt-3">
                                 <label class="fw-bold">Purpose</label>
-                                <input type="text" name="hallBookingPurpose" required placeholder="Describe the purpose in few words" class="form-control">
+                                <input type="text" name="hallBookingPurpose" required
+                                    placeholder="Describe the purpose in few words" class="form-control">
                             </div>
                             <button class="btn btn-danger mt-3" name="bookHall">Book</button>
                         </form>

@@ -7,6 +7,8 @@ include $absoluteDir . "/model/hallModel.php";
 $showDate = false;
 $bookedTimeSlots = [];
 
+$latestHallBookings = retrieveLatestHallBookings($conn, $hallBookingsTable);
+
 if (isset($_REQUEST["searchHalls"]) || isset($_SESSION['hallName'])) {
     $hallName = isset($_REQUEST["searchHalls"]) ? $_REQUEST["hallName"] : $_SESSION['hallName'];
 

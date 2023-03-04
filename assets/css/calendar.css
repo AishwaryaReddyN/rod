@@ -1,11 +1,10 @@
 .calendar {
-  color: #000;
   width: 100%;
   table-layout: fixed;
 }
 
 .calendar.blue {
-  background: #cad3e8;
+  background: #f0f0f0;
 }
 
 .calendar-title th {
