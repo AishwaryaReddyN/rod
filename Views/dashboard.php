@@ -19,32 +19,22 @@ include $absoluteDir . "controller/dashboardController.php";
     </div>
 
     <div class="d-sm-flex align-items-start">
-        <div class="nav flex-column nav-pills me-3 p-3 rounded shadow" id="v-pills-tab" role="tablist"
-            aria-orientation="vertical">
-            <button type="submit" class="nav-link <?php echo !isset($_POST['dashboardShowData']) ? 'active' : null ?>"
-                data-bs-toggle="pill" data-bs-target="#dashboard" role="tab" aria-selected="false">Dashboard</button>
+        <div class="nav flex-column nav-pills me-3 p-3 rounded shadow" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button type="submit" class="nav-link <?php echo !isset($_POST['dashboardShowData']) ? 'active' : null ?>" data-bs-toggle="pill" data-bs-target="#dashboard" role="tab" aria-selected="false">Dashboard</button>
             <form method="POST">
-                <button type="submit"
-                    class="nav-link w-100 <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active' : null ?>"
-                    name="dashboardShowData" value="hallBookings" id="v-pills-profile-tab" data-bs-toggle="pill" ]
-                    data-bs-target="#halls" role="tab" aria-selected="false">Bookings
+                <button type="submit" class="nav-link w-100 <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active' : null ?>" name="dashboardShowData" value="hallBookings" id="v-pills-profile-tab" data-bs-toggle="pill" ] data-bs-target="#halls" role="tab" aria-selected="false">Bookings
                 </button>
-                <button type="submit"
-                    class="nav-link <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active' : null ?>"
-                    name="dashboardShowData" value="announcements" id="v-pills-disabled-tab" data-bs-toggle="pill"
-                    data-bs-target="#announcements" role="tab" aria-selected="false">Announcements</button>
+                <button type="submit" class="nav-link <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active' : null ?>" name="dashboardShowData" value="announcements" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#announcements" role="tab" aria-selected="false">Announcements</button>
             </form>
         </div>
         <div class="tab-content w-100 mt-5 mt-lg-0">
-            <div class="tab-pane fade <?php echo !isset($_POST['dashboardShowData']) ? 'active show' : null ?>"
-                id="dashboard" role="tabpanel">
+            <div class="tab-pane fade <?php echo !isset($_POST['dashboardShowData']) ? 'active show' : null ?>" id="dashboard" role="tabpanel">
                 <div class="shadow p-3 rounded">
                     <h4>Today's Announcements</h4>
                     <div>
                         <?php if (!empty($todaysAnnouncements)) { ?>
                             <?php foreach ($todaysAnnouncements as $announcement) { ?>
-                                <div
-                                    class="my-3 primaryLightAccentBack p-3 rounded-3 d-flex align-items-center justify-content-between">
+                                <div class="my-3 primaryLightAccentBack p-3 rounded-3 d-flex align-items-center justify-content-between">
                                     <div>
                                         <h5>
                                             <?php echo $announcement['announcement_title']; ?>
@@ -54,8 +44,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                         </p>
                                     </div>
                                     <p>
-                                        <?php echo $announcement['announcement_time']; ?><i
-                                            class="fa-regular fa-hourglass-half ms-2 text-danger"></i>
+                                        <?php echo $announcement['announcement_time']; ?><i class="fa-regular fa-hourglass-half ms-2 text-danger"></i>
                                     </p>
                                 </div>
                             <?php } ?>
@@ -106,23 +95,22 @@ include $absoluteDir . "controller/dashboardController.php";
                     <?php } ?>
                 </div>
             </div>
-            <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active show' : null ?>"
-                id="halls" role="tabpanel">
+            <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active show' : null ?>" id="halls" role="tabpanel">
                 <h3>Booked Venues</h3>
                 <hr>
                 <table class="table table-hover rounded-3">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Hall Name</th>
-                            <th scope="col">Booking Date</th>
-                            <th scope="col">Booking Time</th>
-                            <th scope="col">Booking Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if ($allHallBookings && !empty($allHallBookings)) {
-                            foreach ($allHallBookings as $hb) { ?>
+                    <?php if ($allHallBookings && mysqli_num_rows($allHallBookings) > 0) { ?>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Hall Name</th>
+                                <th scope="col">Booking Date</th>
+                                <th scope="col">Booking Time</th>
+                                <th scope="col">Booking Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($allHallBookings as $hb) { ?>
                                 <tr>
                                     <th>1</th>
                                     <td>
@@ -138,19 +126,22 @@ include $absoluteDir . "controller/dashboardController.php";
                                         <?php echo $hb['hall_booking_purpose']; ?>
                                     </td>
                                 </tr>
-                            <?php }
-                        } ?>
-                    </tbody>
+                            <?php } ?>
+                        </tbody>
+                    <?php } else { ?>
+                        <div class="lightAccentBack p-3 rounded-3">
+                            <h5 class="fw-bold">No Bookings</h5>
+                            <p>There are no bookings for any hall. Please check again later.</p>
+                        </div>
+                    <?php } ?>
                 </table>
             </div>
-            <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active show' : null ?>"
-                id="announcements" role="tabpanel">
+            <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active show' : null ?>" id="announcements" role="tabpanel">
                 <h3>Announcements</h3>
                 <div>
-                    <?php if ($allAnnouncements && !empty($allAnnouncements)) {
+                    <?php if ($allAnnouncements && mysqli_num_rows($allAnnouncements) > 0) {
                         foreach ($allAnnouncements as $announcement) { ?>
-                            <div
-                                class="my-3 primaryLightAccentBack p-3 rounded-3 d-flex align-items-center justify-content-between">
+                            <div class="my-3 primaryLightAccentBack p-3 rounded-3 d-flex align-items-center justify-content-between">
                                 <div>
                                     <h5>
                                         <?php echo $announcement['announcement_title']; ?>
@@ -166,8 +157,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                 </div>
                                 <div>
                                     <a href="" class="btn btn-dark">Edit</a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal">Delete</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                                 </div>
                             </div>
                             <!-- Delete Confirmation Modal -->
@@ -180,12 +170,9 @@ include $absoluteDir . "controller/dashboardController.php";
                                         </div>
                                         <div class="modal-footer flex-nowrap p-0">
                                             <form class="w-100 d-flex m-0 p-0">
-                                                <button type="submit"
-                                                    class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes,
+                                                <button type="submit" class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes,
                                                         Delete</strong></button>
-                                                <button type="button"
-                                                    class="btn bg-light text-body-secondary btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0"
-                                                    data-bs-dismiss="modal">No, Go Back</button>
+                                                <button type="button" class="btn bg-light text-body-secondary btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No, Go Back</button>
                                             </form>
                                         </div>
                                     </div>

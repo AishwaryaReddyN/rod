@@ -5,7 +5,6 @@ include $absoluteDir . "/model/baseModel.php";
 include $absoluteDir . "/model/hallModel.php";
 include $absoluteDir . "/model/announcementModel.php";
 include $absoluteDir . "/model/userModel.php";
-include $absoluteDir . "/model/dashboard.php";
 
 $allHallBookings = null;
 $allAnnouncements = null;

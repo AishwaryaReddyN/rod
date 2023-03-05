@@ -29,12 +29,12 @@
         $("#chatQuery").on("click", function() {
             $chatQuery = $("#queryMessage").val();
             if ($chatQuery) {
-                $askedQuestion = '<div class="userMessageContainer d-flex justify-content-end"><div class="userMessage"><p class="m-0">' + $chatQuery + '</p></div></div>';
+                $askedQuestion = '<div class="userMessageContainer d-flex justify-content-end"><div class="userMessage"><small class="d-block text-white-50"><?php echo isset($_SESSION['username']) ? ucwords($_SESSION['username']) : 'Anonymous' ?></small><p class="m-0">' + $chatQuery + '</p></div></div>';
                 $("#chatBotBody").append($askedQuestion);
                 $("#queryMessage").val('');
 
                 $.ajax({
-                    url: '<?php echo $_ENV['BASE_DIR'] . "views/components/bot.php" ?>',
+                    url: '<?php echo $_ENV['BASE_DIR'] . "/model/chatbotModel.php" ?>',
                     type: 'POST',
                     data: 'queryMessage=' + $chatQuery,
                     success: function(queryAnswer) {
