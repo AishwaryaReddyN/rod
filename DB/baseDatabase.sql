@@ -42,3 +42,15 @@ ALTER TABLE `announcements`
 
 ALTER TABLE `announcements`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+  CREATE TABLE IF NOT EXISTS `chatbot`(
+    `id` int(11)  NULL,
+    `queries` varchar(300) NOT NULL,
+    `replies` varchar(300) NOT NULL
+  );
+
+  ALTER TABLE `chatbot`
+  ADD PRIMARY KEY IF NOT EXISTS (`id`);
+
+ALTER TABLE `chatbot`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
