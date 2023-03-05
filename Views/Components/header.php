@@ -21,6 +21,8 @@
     <!-- Calendar Stylesheet -->
     <link rel="stylesheet" href="<?php echo $_ENV['BASE_DIR'] . 'assets/css/calendar.css' ?>">
 
+    <!-- Base Javascript -->
+    <script src="<?php echo $_ENV['BASE_DIR'] . 'assets/js/main.js' ?>"></script>
 </head>
 
 <body class="lightBack">

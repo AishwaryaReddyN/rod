@@ -102,3 +102,82 @@ h1 h2 h3 h4 h5 h6 {
   font-weight: 500;
   transition: 1s ease;
 }
+
+/* Chatbot */
+.chatIcon{
+    background-color: var(--dark);
+    color: var(--light);
+    width: 3.3rem !important;
+    height: 3.3rem !important;
+    border-radius: 50%;
+    padding: 1rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 999;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+#chatBox{
+    background-color: var(--lightAccent);
+    color: var(--dark);
+    width: 20rem;
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    z-index: 999;
+    transition: 0.5s ease;
+    display: none;
+}
+
+#chatCloseIcon{
+    display: none;
+    transition: transform 200ms linear 0s;
+    transform-origin: calc(100% - 30px) center;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+.showIcon{
+    display: block;
+}
+
+.hideIcon{
+    display: none;
+}
+
+.rotate{
+    transition: transform 200ms linear 0s;
+    transform-origin: calc(100% - 30px) center;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+#chatBotBody{
+    overflow-y: scroll;
+    height: 27rem;
+    padding: 0.5rem;
+}
+
+.botMessage{
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+    margin: 0.5rem;
+    width: 80%;
+    display: inline-block;
+    text-align: left;
+}
+
+.userMessage{
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0.5rem;
+    display: inline-block;
+    margin: 0.5rem;
+    text-align: right;
+    width: 80%;
+}
