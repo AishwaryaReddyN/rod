@@ -9,6 +9,7 @@
   --light: #ffffff;
   --lightAccent: #f5f2f2;
   --dark: #2d3342;
+  --darkAccent: #dddddd;
 }
 /* Globals Styles */
 .primaryBack {
@@ -33,6 +34,10 @@
   background: var(--dark);
 }
 
+.darkAccentBack {
+  background: var(--darkAccent);
+}
+
 .primaryColor {
   color: var(--primary);
 }
@@ -53,6 +58,10 @@
 }
 .darkColor {
   color: var(--dark);
+}
+
+.darkAccentColor {
+  color: var(--darkAccent);
 }
 
 body {

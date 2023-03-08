@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `hall_bookings` (
   `hall_booking_date` date NOT NULL,
   `hall_booking_time` varchar(255) NOT NULL,
   `hall_booking_purpose` varchar(255) NOT NULL,
+  `booking_id` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL
 );
 
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `announcement_message` longtext NOT NULL,
   `announcement_date` date NOT NULL,
   `announcement_time` time NOT NULL,
+  `announcement_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL
 );
 

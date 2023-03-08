@@ -15,7 +15,7 @@ if (isset($_POST['createAnnouncement'])) {
     $time = $_REQUEST['announcementTime'];
 
     $userId = $_SESSION['userId'];
-    insertOne($conn, "announcements", ["announcement_title", "announcement_message", "announcement_date", "announcement_time", "user_id"], [$title, $message, $date, $time, $userId]);
+    insertOne($conn, "announcements", ["announcement_title", "announcement_message", "announcement_date", "announcement_time", "announcement_id", "user_id"], [$title, $message, $date, $time, $uuid->toString(),$userId]);
     header("Location:" . $_ENV['BASE_DIR'] . "views/announcements.php?alertType=success&alertMainText=Announcement%20Successful!&alertSubText=Your%20announcement%20has%20been%20made%20successfully");
     exit();
 }

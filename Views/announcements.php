@@ -44,7 +44,7 @@ include $absoluteDir . "controller/announcementController.php";
                     <input type="time" required class="form-control" name="announcementTime">
                 </div>
             </div>
-            <button type="submit" class="btn btn-danger mt-3" name="createAnnouncement">Schedule</button>
+            <button type="submit" class="btn btn-danger mt-3" name="createAnnouncement" <?php echo !isset($_SESSION['username']) ? 'disabled' : null ?>>Schedule</button>
         </form>
     </div>
 </div>

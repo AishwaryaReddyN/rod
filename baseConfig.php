@@ -5,6 +5,11 @@ require 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+// Initialise UUID
+use Ramsey\Uuid\Uuid;
+
+$uuid = Uuid::uuid4();
+
 // Initialse Session
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 

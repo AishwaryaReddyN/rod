@@ -33,7 +33,7 @@ if (isset($_REQUEST['bookHall'])) {
     $hallBookingTime = $_REQUEST['hallBookingTime'];
     $hallBookingPurpose = $_REQUEST['hallBookingPurpose'];
     $userId = $_SESSION['userId'];
-    insertOne($conn, "hall_bookings", ["hall_name", "hall_booking_date", "hall_booking_time", "hall_booking_purpose", "user_id"], [$hallName, $hallBookingDate, $hallBookingTime, $hallBookingPurpose, $userId]);
+    insertOne($conn, "hall_bookings", ["hall_name", "hall_booking_date", "hall_booking_time", "hall_booking_purpose", "booking_id", "user_id"], [$hallName, $hallBookingDate, $hallBookingTime, $hallBookingPurpose, $uuid->toString(), $userId]);
 
     // Clear required session variables for Hall Booking
     unset($_SESSION['hallName']);

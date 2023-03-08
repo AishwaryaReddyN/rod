@@ -15,6 +15,7 @@ function retrieveAnnouncementsByDate($conn, $date)
         return null;
     }
 }
+
 function retrieveAnnouncementsByDateRange($conn, $announcementsTable, $announcementsStartDate, $announcementsEndDate, $userId)
 {
     if (!empty($userId)) {
@@ -22,6 +23,13 @@ function retrieveAnnouncementsByDateRange($conn, $announcementsTable, $announcem
     } else {
         $sql = "SELECT * FROM $announcementsTable WHERE `announcement_date` BETWEEN '$announcementsStartDate' AND '$announcementsEndDate'";
     }
+    $records = mysqli_query($conn, $sql);
+    return $records;
+}
+
+function retrieveAnnouncementsByUserId($conn, $announcementsTable, $userId)
+{
+    $sql = "SELECT * FROM $announcementsTable WHERE `user_id` = $userId ORDER BY `announcement_date` DESC Limit 10";
     $records = mysqli_query($conn, $sql);
     return $records;
 }
