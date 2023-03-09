@@ -37,9 +37,16 @@ function retrieveHallBookingsByDateRange($conn, $tableName, $hallBookingStartDat
     return $records;
 }
 
+function retrieveHallBookingsByUserId($conn, $tableName, $userId)
+{
+    $sql = "SELECT * FROM $tableName WHERE `user_id` = $userId ORDER BY `hall_booking_date` DESC Limit 10";
+    $records = mysqli_query($conn, $sql);
+    return $records;
+}
+
 function retrieveLatestHallBookings($conn, $tableName)
 {
-    $sql = "SELECT * FROM `hall_bookings` ORDER BY `hall_booking_date` LIMIT 5";
+    $sql = "SELECT * FROM $tableName ORDER BY `hall_booking_date` LIMIT 5";
     $records = mysqli_query($conn, $sql);
     return $records;
 }

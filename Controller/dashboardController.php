@@ -5,10 +5,14 @@ include $absoluteDir . "/model/baseModel.php";
 include $absoluteDir . "/model/hallModel.php";
 include $absoluteDir . "/model/announcementModel.php";
 include $absoluteDir . "/model/userModel.php";
-include $absoluteDir . "/model/dashboard.php";
 
 $allHallBookings = null;
 $allAnnouncements = null;
+
+// if (!isset($_SESSION['username'])) {
+//     header("Location: " . $_ENV['BASE_DIR'] . "/views/loginSignUp.php");
+//     exit();
+// }
 
 // Today's Data
 $todaysAnnouncements = retrieveAnnouncementsByDate($conn, date("Y-m-d"));
@@ -21,8 +25,16 @@ if (isset($_REQUEST["dashboardShowData"])) {
         $userId = $_SESSION['userId'];
     }
     if ($_REQUEST["dashboardShowData"] == "hallBookings") {
-        $allHallBookings = retrieveHallBookingsByDateRange($conn, $hallBookingsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
+        if (!empty($userId)) {
+            $allHallBookings = retrieveHallBookingsByUserId($conn, $hallBookingsTable, $userId);
+        } else {
+            $allHallBookings = retrieveHallBookingsByDateRange($conn, $hallBookingsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
+        }
     } else if ($_REQUEST["dashboardShowData"] == "announcements") {
-        $allAnnouncements = retrieveAnnouncementsByDateRange($conn, $announcementsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
+        if (!empty($userId)) {
+            $allAnnouncements = retrieveAnnouncementsByUserId($conn, $announcementsTable, $userId);
+        } else {
+            $allAnnouncements = retrieveAnnouncementsByDateRange($conn, $announcementsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
+        }
     }
 }

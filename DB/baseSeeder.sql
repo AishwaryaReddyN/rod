@@ -1,16 +1,19 @@
 -- Users Table Seeder
+-- Admin Password: admin@sfc
+-- Dummy User Password: dummyuser@sfc
 INSERT INTO `users` (`username`, `email`, `password`, `dept`, `role`) VALUES('admin', 'admin@sfc.ac.in', '$2y$10$y6JTd9cve1T1f0MyLPQ9k.cxIhNRaJpK4MQpi0ipL8RBkMhOYH8BC', 'default', 'admin');
-INSERT INTO `users` (`username`, `email`, `password`, `dept`, `role`) VALUES('moderator', 'moderator@sfc.ac.in', '$2y$10$Jy9vxki61nIrBVJRIsSI.eSY5GwUXWG17eBYtfhwlvXVZH1ZyxfT2', 'default', 'moderator');
+INSERT INTO `users` (`username`, `email`, `password`, `dept`, `role`) VALUES('dummyuser', 'dummyuser@sfc.ac.in', '$2y$10$tmVdfRuDnb3B5G4V/NmLzOaS7uCXdcfp6OlmStQjGGP.jrXrXzuvS', 'default', 'user');
 
 -- Hall Bookings Seeder
-INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `user_id`) VALUES('auditorium', '2023/02/25', '8:00-8:50', 'Seminar', 1);
-INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `user_id`) VALUES('auditorium', '2023/02/25', '11:20-12:10', 'Seminar', 5);
-INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `user_id`) VALUES('capitanio', '2023/02/25', '11:20-12:10', 'Dance Practice', 10);
+INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `booking_id`,`user_id`) VALUES('auditorium', '2023/03/25', '8:00-8:50', 'Seminar', '5ab2bd9a-805c-4dba-b083-8f71e0eb70a9', 1);
+INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `booking_id`, `user_id`) VALUES('auditorium', '2023/01/25', '11:20-12:10', 'Seminar', '8591d62b-4bdf-46ca-ac3e-dff89b6433d3', 2);
+INSERT INTO `hall_bookings` (`hall_name`, `hall_booking_date`, `hall_booking_time`, `hall_booking_purpose`, `booking_id`, `user_id`) VALUES('capitanio', '2023/04/25', '11:20-12:10', 'Dance Practice', 'c9501617-e25b-4109-8b6a-6efb4bcdb203', 2);
 
 -- Announcements Seeder
-INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `user_id`) VALUES('Announcement Title', 'This is a sample message', '2023/02/25', '10:30', 1);
-INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `user_id`) VALUES('Announcement Title', 'This is a sample message2', '2023/02/25', '14:19', 3);
-INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `user_id`) VALUES('Announcement Title', 'This is a sample message3', '2023/02/15', '05:10', 1);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `announcement_id`, `user_id`) VALUES('Announcement Title', 'This is a sample message', '2023/03/25', '10:30', 'ebeef8bc-ba89-49ac-8cf2-6e5ba204e682', 1);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `announcement_id`, `user_id`) VALUES('Announcement Title', 'This is a sample message2', '2023/04/25', '14:19', '880862b0-390f-4712-b8d0-aa9ebc3b13da', 2);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `announcement_id`, `user_id`) VALUES('Announcement Title', 'This is a sample message3', '2023/01/15', '05:10', 'dd5c411d-ec69-488b-b213-f8e949a87a62', 1);
+INSERT INTO `announcements` (`announcement_title`, `announcement_message`, `announcement_date`, `announcement_time`, `announcement_id`, `user_id`) VALUES('Announcement Title Three', 'This is a sample message3', '2023/02/10', '14:19', '880862b0-390f-4712-b8d0-aa9ebc3b13da', 2);
 
 -- Chatbot Seeder
 INSERT INTO `chatbot` (`queries`, `replies`) VALUES ('How to apply for St. Francis College?', 'https://www.sfc.ac.in/admissions.php\r\nclick on the link to view the admission form. The application fee is Rs.500/- for the candidates who are applying.'), 
