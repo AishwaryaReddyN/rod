@@ -154,6 +154,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                         </div>
                                         <div class="modal-footer flex-nowrap p-0">
                                             <form class="w-100 d-flex m-0 p-0">
+                                                <input type="text" hidden id="deleteIdKey" name="d">
                                                 <button type="submit" class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes,
                                                         Delete</strong></button>
                                                 <button type="button" class="btn bg-light text-body-secondary btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No, Go Back</button>
@@ -211,7 +212,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                 <div>
                                     <?php if (!$announcementCompleted) { ?>
                                         <a href="<?php ?>" class="btn btn-sm btn-dark"><i class="fa-solid fa-pencil"></i></a>
-                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#announcementDeleteModal"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#announcementDeleteModal" onclick="addDeleteId('announcementDeleteKey', <?php echo $announcement['id']; ?>)"><i class="fa-solid fa-trash"></i></button>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -224,9 +225,9 @@ include $absoluteDir . "controller/dashboardController.php";
                                             <p class="mb-0">This action is irreverisble.</p>
                                         </div>
                                         <div class="modal-footer flex-nowrap p-0">
-                                            <form class="w-100 d-flex m-0 p-0">
-                                                <button type="submit" class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes,
-                                                        Delete</strong></button>
+                                            <form method="POST" class="w-100 d-flex m-0 p-0">
+                                                <input type="text" hidden id="announcementDeleteKey" name="announcementId">
+                                                <button type="submit" class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" name="deleteAnnouncement"><strong>Yes, Delete</strong></button>
                                                 <button type="button" class="btn bg-light text-body-secondary btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No, Go Back</button>
                                             </form>
                                         </div>
@@ -241,7 +242,6 @@ include $absoluteDir . "controller/dashboardController.php";
                         </div>
                     <?php } ?>
                 </div>
-
             </div>
         </div>
     </div>

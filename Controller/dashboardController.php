@@ -9,16 +9,17 @@ include $absoluteDir . "/model/userModel.php";
 $allHallBookings = null;
 $allAnnouncements = null;
 
-// if (!isset($_SESSION['username'])) {
-//     header("Location: " . $_ENV['BASE_DIR'] . "/views/loginSignUp.php");
-//     exit();
-// }
+if (!isset($_SESSION['username'])) {
+    header("Location: " . $_ENV['BASE_DIR'] . "/views/loginSignUp.php");
+    exit();
+}
 
 // Today's Data
 $todaysAnnouncements = retrieveAnnouncementsByDate($conn, date("Y-m-d"));
 $todaysHallBookings = retrieveLatestHallBookingsByDate($conn, date("Y-m-d"));
 
 if (isset($_REQUEST["dashboardShowData"])) {
+    echo $_SESSION['userId'];
     $userRole = mysqli_fetch_all(retrieveUserRole($conn, $_SESSION['userId']))[0][0];
     $userId = null;
     if ($userRole != "admin") {
@@ -37,4 +38,9 @@ if (isset($_REQUEST["dashboardShowData"])) {
             $allAnnouncements = retrieveAnnouncementsByDateRange($conn, $announcementsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
         }
     }
+}
+
+if(isset($_POST['deleteAnnouncement'])){
+    $announcementId = $_POST["announcementId"];
+
 }

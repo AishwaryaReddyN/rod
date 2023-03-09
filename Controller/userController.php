@@ -30,26 +30,32 @@ if (isset($_REQUEST["signup"])) {
         }
     }
     insertOne($conn, "users", ["username", "email", "password", "dept", "role"], [$username, $email, $hashedPassword, $dept, "user"]);
-    $_SESSION["username"] = $username;
-    header("Location: " . $_ENV['BASE_DIR']);
+    $rows = retrieveRecords($conn, 'users', ['email' => $email]);
+
+    foreach ($rows as $r) {
+        if ($email == $r["email"]) {
+            $_SESSION["username"] = $r["username"];
+            $_SESSION["userId"] = $r["id"];
+            header("Location:" . $_ENV['BASE_DIR']);
+            exit();
+        } else {
+            header("Location:" . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=success&alertMainText=Account%created%successfully&alertSubText=Please%20logins");
+            exit();
+        }
+    }
 }
 
 if (isset($_REQUEST["login"])) {
     $inputEmail = $_POST["email"];
     $inputPassword = $_POST["password"];
     $rows = retrieveRecords($conn, 'users', ['email' => $inputEmail]);
-    var_dump($rows);
     if (mysqli_num_rows($rows) > 0) {
-        echo "Email found";
         foreach ($rows as $r) {
             if ($inputEmail == $r["email"]) {
                 if (password_verify($inputPassword, $r["password"])) {
                     $_SESSION["username"] = $r["username"];
                     $_SESSION["userId"] = $r["id"];
                     header("Location:" . $_ENV['BASE_DIR']);
-                    exit();
-                } else {
-                    header("Location:" . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=error&alertMainText=Incorrect%20password&alertSubText=Please%20try%20logging%20in%20again");
                     exit();
                 }
             }

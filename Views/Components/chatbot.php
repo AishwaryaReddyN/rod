@@ -41,7 +41,7 @@
                     type: 'POST',
                     data: 'queryMessage=' + $chatQuery,
                     success: function (queryAnswer) {
-                        $reply = '<div class="botMessage"><i class="fa-solid fa-robot text-body-tertiary mb-2"></i><p class="m-0">' + queryAnswer + '</p></div>';
+                        $reply = '<div class="botMessage"><p class="m-0">' + queryAnswer + '</p></div>';
                         $("#chatBotBody").append($reply);
                         $("#chatBotBody").scrollTop($("#chatBotBody")[0].scrollHeight);
                     }
