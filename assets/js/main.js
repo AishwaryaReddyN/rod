@@ -13,6 +13,7 @@ function showChatBox() {
   }
 }
 
-function addDeleteId(modalId, dbId) {
-  document.getElementById(modalId).value = dbId;
+function addDeleteId(modalInputId, dbId) {
+  console.log(dbId);
+  document.getElementById(modalInputId).value = dbId;
 }

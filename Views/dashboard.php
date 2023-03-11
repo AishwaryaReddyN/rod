@@ -7,6 +7,10 @@ include $absoluteDir . "controller/dashboardController.php";
 ?>
 
 <div class="container" style="min-height: 81vh;">
+
+   <!-- Alerts -->
+   <?php include $absoluteDir . "views/components/alert.php"; ?>
+
     <div class="my-5 d-flex align-items-center justify-content-between">
         <h1 class="m-0">Hi <span class="primaryColor">
                 <?php echo isset($_SESSION["username"]) ? ucwords($_SESSION["username"]) : null ?>
@@ -97,7 +101,7 @@ include $absoluteDir . "controller/dashboardController.php";
             </div>
             <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active show' : null ?>" id="halls" role="tabpanel">
                 <h3>Booked Venues</h3>
-                <div class="table-responsive">
+                <div class="table-responsive p-3">
                     <table class="table shadow rounded-3">
                         <?php if ($allHallBookings && mysqli_num_rows($allHallBookings) > 0) { ?>
                             <thead class="table-dark">
@@ -138,7 +142,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                         <td>
                                             <?php if (!$bookingCompleted) { ?>
                                                 <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php?hallBookingId=' . $hb['booking_id']) ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-pencil"></i></a>
-                                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#bookingDeleteModal"><i class="fa-solid fa-trash"></i></button>
+                                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#bookingDeleteModal" onclick="addDeleteId('bookingDeleteKey', <?php echo $hb['id']; ?>)"><i class="fa-solid fa-trash"></i></button>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -153,9 +157,9 @@ include $absoluteDir . "controller/dashboardController.php";
                                             <p class="mb-0">This action is irreverisble.</p>
                                         </div>
                                         <div class="modal-footer flex-nowrap p-0">
-                                            <form class="w-100 d-flex m-0 p-0">
-                                                <input type="text" hidden id="deleteIdKey" name="d">
-                                                <button type="submit" class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end"><strong>Yes,
+                                            <form method="POST" class="w-100 d-flex m-0 p-0">
+                                                <input type="text" hidden id="bookingDeleteKey" name="hallBookingId">
+                                                <button type="submit" class="btn bg-danger text-white btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" name="deleteHallBooking"><strong>Yes,
                                                         Delete</strong></button>
                                                 <button type="button" class="btn bg-light text-body-secondary btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No, Go Back</button>
                                             </form>
@@ -211,7 +215,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                 </div>
                                 <div>
                                     <?php if (!$announcementCompleted) { ?>
-                                        <a href="<?php ?>" class="btn btn-sm btn-dark"><i class="fa-solid fa-pencil"></i></a>
+                                        <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/announcements.php?announcementId=' . $announcement['announcement_id']) ?>" class="btn btn-sm btn-dark"><i class="fa-solid fa-pencil"></i></a>
                                         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#announcementDeleteModal" onclick="addDeleteId('announcementDeleteKey', <?php echo $announcement['id']; ?>)"><i class="fa-solid fa-trash"></i></button>
                                     <?php } ?>
                                 </div>

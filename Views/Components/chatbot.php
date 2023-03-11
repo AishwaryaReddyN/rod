@@ -22,7 +22,7 @@
 </div>
 
 <!-- Icon -->
-<div class="chatIcon text-center d-flex align-items-center justify-content-center" onclick="showChatBox()">
+<div class="chatIcon text-center d-flex align-items-center justify-content-center" onmouseover="showChatBox()" onclick="showChatBox()">
     <i class="fa-regular fa-comment" id="chatOpenIcon"></i>
     <i class="fa-solid fa-xmark" id="chatCloseIcon"></i>
 </div>

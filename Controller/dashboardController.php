@@ -42,5 +42,16 @@ if (isset($_REQUEST["dashboardShowData"])) {
 
 if(isset($_POST['deleteAnnouncement'])){
     $announcementId = $_POST["announcementId"];
-
+    deleteRecord($conn, $announcementsTable, 'id', $announcementId);
+    header("Location: " . $_ENV['BASE_DIR'] . "/views/dashboard.php?alertType=success&alertMainText=Deletion%20Successful.&alertSubText=Announcement%20deleted%20successfully");
+    exit();
 }
+
+if(isset($_POST['deleteHallBooking'])){
+    $hallBookingId = $_POST["hallBookingId"];
+    deleteRecord($conn, $hallBookingsTable, 'id', $hallBookingId);
+    header("Location: " . $_ENV['BASE_DIR'] . "/views/dashboard.php?alertType=success&alertMainText=Deletion%20Successful.&alertSubText=Booking%20deleted%20successfully");
+    exit();
+}
+
+

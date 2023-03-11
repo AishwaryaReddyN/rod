@@ -16,5 +16,5 @@ if (mysqli_num_rows($run_query) > 0) {
     $reply = $fetch_data['replies'];
     echo $reply;
 } else {
-    echo "Sorry, I could not get that.";
+    echo "Sorry, I could not get that. <br> <br> Please Contact <ul><li><a href='tel:+91 40 23403200'>+91 40 23403200</a></li><li><a href='tel:23400470'>23400470</a></li></ul> for any further enquires.";
 }

@@ -24,7 +24,7 @@ if (isset($_REQUEST["searchHalls"])) {
             'start' => $searchedHalls['hall_booking_date'],
             'end' => $searchedHalls['hall_booking_date'],
             'mask' => true,
-            'classes' => ['bg-secondary-subtle', 'rounded-3', 'fw-bold', 'text-dark']
+            'classes' => ['bg-success-subtle', 'rounded-3', 'fw-bold', 'text-dark']
         );
     }
 }

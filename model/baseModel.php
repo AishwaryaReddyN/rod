@@ -7,6 +7,14 @@ function insertOne($conn, $tableName, $keys, $values)
     $insertedFlag = mysqli_query($conn, $sql);
     return $insertedFlag;
 }
+
+function updateOne($conn, $tableName, $arrayItems, $identifierKey, $identifierValue){
+    $updateString = updateString($arrayItems);
+    $query = "UPDATE $tableName SET $updateString Where $identifierKey = '$identifierValue'";
+    mysqli_query($conn, $query);
+    return null;
+}
+
 function retrieveRecords($conn, $tableName, $values)
 {
     $valuesString = sqlStringWithValues($values, "`", "'", " AND ");
@@ -22,6 +30,11 @@ function retrieveAllRecords($conn, $tableName)
     return $records;
 }
 
+function deleteRecord($conn, $tableName, $identifier, $identifierValue){
+    $query = "DELETE FROM $tableName WHERE $identifier = '$identifierValue'";
+    mysqli_query($conn, $query);
+    return null;
+}
 
 // Miscellaneous
 function sqlString($array, $quote, $delimeter)
@@ -70,4 +83,19 @@ function convertMonthToDate($hallMonth, $mode)
     if ($mode == "start") {
         return "01-" . $monthTextToNum[$hallMonth] . "-";
     }
+}
+
+function updateString($arrayItems){
+    $newString = "";
+    foreach($arrayItems as $key=>$val){
+        if($key != "user_id")
+            $newString = $newString . $key . " = " . "'" .$val . "'" . ",";
+        else
+            $newString = $newString . $key . " = " .$val . ",";
+    }
+
+    if (count($arrayItems) > 1) {
+        $newString = rtrim($newString, ",");
+    }
+    return $newString;
 }

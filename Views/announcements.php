@@ -28,23 +28,24 @@ include $absoluteDir . "controller/announcementController.php";
         <form method="POST" class="mt-3 lightAccentBack p-3">
             <div>
                 <label class="fw-bold">Title</label>
-                <input class="form-control" required name="announcementTitle">
+                <input class="form-control" required name="announcementTitle" value="<?php echo !empty($existingAnnouncement) ? $existingAnnouncement['announcement_title'] : null; ?>">
             </div>
             <div class="my-3">
                 <label class="fw-bold">Message</label>
-                <textarea class="form-control" required name="announcementMessage" cols="30" rows="5"></textarea>
+                <textarea class="form-control" required name="announcementMessage" cols="30" rows="5"><?php echo !empty($existingAnnouncement) ? $existingAnnouncement['announcement_message'] : null; ?></textarea>
             </div>
             <div class="row mt-3">
                 <div class="col-6">
                     <label class="fw-bold">Date</label>
-                    <input type="date" required class="form-control" name="announcementDate">
+                    <input type="date" required class="form-control" name="announcementDate" value="<?php echo !empty($existingAnnouncement) ? $existingAnnouncement['announcement_date'] : null; ?>">
                 </div>
                 <div class="col-6">
                     <label class="fw-bold">Time</label>
-                    <input type="time" required class="form-control" name="announcementTime">
+                    <input type="time" required class="form-control" name="announcementTime" value="<?php echo !empty($existingAnnouncement) ? $existingAnnouncement['announcement_time'] : null; ?>">
                 </div>
             </div>
-            <button type="submit" class="btn btn-danger mt-3" name="createAnnouncement" <?php echo !isset($_SESSION['username']) ? 'disabled' : null ?>>Schedule</button>
+            <input type="text" hidden class="form-control" name="announcementId" value="<?php echo !empty($existingAnnouncement) ? $existingAnnouncement['announcement_id'] : null; ?>">
+            <button type="submit" class="btn btn-danger mt-3" name="upsertAnnouncement" value="<?php echo !empty($existingAnnouncement) ? 'update' : 'create'; ?>" <?php echo !isset($_SESSION['username']) ? 'disabled' : null ?>><?php echo !empty($existingAnnouncement) ? 'Update' : 'Schedule'; ?></button>
         </form>
     </div>
 </div>
