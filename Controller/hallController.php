@@ -47,14 +47,14 @@ if (isset($_REQUEST['upsertBooking'])) {
         // Clear required session variables for Hall Booking
         unset($_SESSION['hallName']);
         unset($_SESSION['currentMonth']);
+    
+        header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Booking%20Successful!&alertSubText=Your%20booking%20has%20been%20made%20successfully");
+        exit();
     } else {
         updateOne($conn, $hallBookingsTable, ["hall_name" => $hallName, "hall_booking_date" => $hallBookingDate, "hall_booking_time" => $hallBookingTime, "hall_booking_purpose" => $hallBookingPurpose, "user_id" => $userId], "booking_id", $bookingId);
         header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20booking%20has%20been%20updated%20successfully");
         exit();
     }
-
-    header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Booking%20Successful!&alertSubText=Your%20booking%20has%20been%20made%20successfully");
-    exit();
 }
 
 if (isset($_POST['decrementMonth'])) {
