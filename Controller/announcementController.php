@@ -21,19 +21,18 @@ if (isset($_POST['upsertAnnouncement'])) {
 
     $userId = $_SESSION['userId'];
 
-    if($action == "create"){    
+    if ($action == "create") {
         insertOne($conn, "announcements", ["announcement_title", "announcement_message", "announcement_date", "announcement_time", "announcement_id", "user_id"], [$title, $message, $date, $time, $announcementId, $userId]);
         header("Location:" . $_ENV['BASE_DIR'] . "views/announcements.php?alertType=success&alertMainText=Announcement%20Successful!&alertSubText=Your%20announcement%20has%20been%20made%20successfully");
         exit();
-    }
-    else{
+    } else {
         updateOne($conn, $announcementsTable, ["announcement_title" => $title, "announcement_message" => $message, "announcement_date" => $date, "announcement_time" => $time, "user_id" => $userId], "announcement_id", $announcementId);
         header("Location:" . $_ENV['BASE_DIR'] . "views/announcements.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20announcement%20has%20been%20updated%20successfully");
         exit();
     }
 }
 
-if(isset($_REQUEST['announcementId'])){
+if (isset($_REQUEST['announcementId'])) {
     $announcementId = $_REQUEST['announcementId'];
-    $existingAnnouncement = mysqli_fetch_array(retrieveRecords($conn, $announcementsTable, ["announcement_id" => $announcementId]));
+    $existingAnnouncement = retrieveOneRecord($conn, $announcementsTable, ["announcement_id" => $announcementId]);
 }

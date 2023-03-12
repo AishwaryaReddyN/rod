@@ -17,6 +17,7 @@ if ($alertType == "success") {
 } else {
     $alertType = "primary";
 }
+
 if (isset($_REQUEST["alertMainText"])) {
     echo "<div class='alert alert-" . $alertType . " alert-dismissible fade show' role='alert'>
     <strong>" . $_REQUEST["alertMainText"] . "</strong> " . $_REQUEST["alertSubText"] . "

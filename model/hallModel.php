@@ -26,6 +26,18 @@ function retrieveLatestHallBookingsByDate($conn, $hallBookingDate)
     return $finalData;
 }
 
+function retrieveLatestHallBookingsByLimit($conn, $tableName, $limit)
+{
+    $hallNames = ["auditorium", "capitanio", "gerosa", "quadrangle"];
+    $finalData = array();
+    foreach ($hallNames as $hallName) {
+        $sql = "SELECT * FROM `$tableName` WHERE `hall_name` = '$hallName' Limit $limit";
+        $records = mysqli_query($conn, $sql);
+        $finalData[$hallName] = $records;
+    }
+    return $finalData;
+}
+
 function retrieveHallBookingsByDateRange($conn, $tableName, $hallBookingStartDate, $hallBookingEndDate, $userId)
 {
     if (!empty($userId)) {

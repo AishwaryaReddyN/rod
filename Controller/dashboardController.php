@@ -15,11 +15,10 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Today's Data
-$todaysAnnouncements = retrieveAnnouncementsByDate($conn, date("Y-m-d"));
-$todaysHallBookings = retrieveLatestHallBookingsByDate($conn, date("Y-m-d"));
+$latestAnnouncements = retrieveAnnouncementsByLimit($conn, $announcementsTable, 5);
+$latestBookings = retrieveLatestHallBookingsByLimit($conn, $hallBookingsTable, 5);
 
 if (isset($_REQUEST["dashboardShowData"])) {
-    echo $_SESSION['userId'];
     $userRole = mysqli_fetch_all(retrieveUserRole($conn, $_SESSION['userId']))[0][0];
     $userId = null;
     if ($userRole != "admin") {
@@ -40,18 +39,16 @@ if (isset($_REQUEST["dashboardShowData"])) {
     }
 }
 
-if(isset($_POST['deleteAnnouncement'])){
+if (isset($_POST['deleteAnnouncement'])) {
     $announcementId = $_POST["announcementId"];
     deleteRecord($conn, $announcementsTable, 'id', $announcementId);
     header("Location: " . $_ENV['BASE_DIR'] . "/views/dashboard.php?alertType=success&alertMainText=Deletion%20Successful.&alertSubText=Announcement%20deleted%20successfully");
     exit();
 }
 
-if(isset($_POST['deleteHallBooking'])){
+if (isset($_POST['deleteHallBooking'])) {
     $hallBookingId = $_POST["hallBookingId"];
     deleteRecord($conn, $hallBookingsTable, 'id', $hallBookingId);
     header("Location: " . $_ENV['BASE_DIR'] . "/views/dashboard.php?alertType=success&alertMainText=Deletion%20Successful.&alertSubText=Booking%20deleted%20successfully");
     exit();
 }
-
-

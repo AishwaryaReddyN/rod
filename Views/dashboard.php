@@ -8,8 +8,10 @@ include $absoluteDir . "controller/dashboardController.php";
 
 <div class="container" style="min-height: 81vh;">
 
-   <!-- Alerts -->
-   <?php include $absoluteDir . "views/components/alert.php"; ?>
+    <!-- Alerts -->
+    <div class="container">
+        <?php include $absoluteDir . "views/components/alert.php"; ?>
+    </div>
 
     <div class="my-5 d-flex align-items-center justify-content-between">
         <h1 class="m-0">Hi <span class="primaryColor">
@@ -34,10 +36,10 @@ include $absoluteDir . "controller/dashboardController.php";
         <div class="tab-content w-100 mt-5 mt-lg-0">
             <div class="tab-pane fade <?php echo !isset($_POST['dashboardShowData']) ? 'active show' : null ?>" id="dashboard" role="tabpanel">
                 <div class="shadow p-3 rounded">
-                    <h4>Today's Announcements</h4>
+                    <h4>Latest Announcements</h4>
                     <div>
-                        <?php if (!empty($todaysAnnouncements)) { ?>
-                            <?php foreach ($todaysAnnouncements as $announcement) { ?>
+                        <?php if (!empty($latestAnnouncements)) { ?>
+                            <?php foreach ($latestAnnouncements as $announcement) { ?>
                                 <div class="my-3 primaryLightAccentBack p-3 rounded-3 d-flex align-items-center justify-content-between">
                                     <div>
                                         <h5>
@@ -55,17 +57,17 @@ include $absoluteDir . "controller/dashboardController.php";
                         <?php } else { ?>
                             <div class="my-3 lightAccentBack p-3 rounded-3">
                                 <h5 class="fw-bold">No Announcements</h5>
-                                <p>There are no announcements for today. Please check again later.</p>
+                                <p>There are no announcements. Please check again later.</p>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
-                <div class="mt-3 shadow p-3 rounded">
-                    <h4 class="mb-3">Today's Bookings</h4>
-                    <?php if (!empty($todaysHallBookings)) { ?>
+                <div class="my-5 shadow p-3 rounded">
+                    <h4>Latest Bookings</h4>
+                    <?php if (!empty($latestBookings)) { ?>
                         <div class="row">
-                            <?php foreach ($todaysHallBookings as $hallName => $hallBookingsData) { ?>
-                                <div class="col-12 col-lg-3">
+                            <?php foreach ($latestBookings as $hallName => $hallBookingsData) { ?>
+                                <div class="col-12 col-lg-6 my-3">
                                     <div class="shadow p-3">
                                         <h5 class="text-danger">
                                             <?php echo ucwords($hallName) ?>
@@ -94,19 +96,19 @@ include $absoluteDir . "controller/dashboardController.php";
                     <?php } else { ?>
                         <div class="shadow p-3 lightAccentBack rounded">
                             <h5 class="fw-bold">No Bookings</h5>
-                            <p>There are no bookings for today. Please check again later.</p>
+                            <p>There are no bookings. Please check again later.</p>
                         </div>
                     <?php } ?>
                 </div>
             </div>
             <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active show' : null ?>" id="halls" role="tabpanel">
                 <h3>Booked Venues</h3>
-                <div class="table-responsive p-3">
-                    <table class="table shadow rounded-3">
-                        <?php if ($allHallBookings && mysqli_num_rows($allHallBookings) > 0) { ?>
+                <?php if ($allHallBookings && mysqli_num_rows($allHallBookings) > 0) { ?>
+                    <div class="table-responsive p-3">
+                        <table class="table shadow rounded-3">
                             <thead class="table-dark">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Booking Id</th>
                                     <th scope="col">Hall Name</th>
                                     <th scope="col">Booking Date</th>
                                     <th scope="col">Booking Time</th>
@@ -126,7 +128,7 @@ include $absoluteDir . "controller/dashboardController.php";
                                     }
                                 ?>
                                     <tr class="<?php echo $bookingCompleted ? 'darkAccentBack' : null ?>">
-                                        <th><?php echo $key + 1 ?></th>
+                                        <th><?php echo $hb['booking_id'] ?></th>
                                         <td>
                                             <?php echo ucwords($hb['hall_name']); ?>
                                         </td>
@@ -139,10 +141,12 @@ include $absoluteDir . "controller/dashboardController.php";
                                         <td>
                                             <?php echo $hb['hall_booking_purpose']; ?>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <?php if (!$bookingCompleted) { ?>
-                                                <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php?hallBookingId=' . $hb['booking_id']) ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-pencil"></i></a>
-                                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#bookingDeleteModal" onclick="addDeleteId('bookingDeleteKey', <?php echo $hb['id']; ?>)"><i class="fa-solid fa-trash"></i></button>
+                                                <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php?hallBookingId=' . $hb['booking_id']) ?>" class="btn btn-sm btn-dark my-1"><i class="fa-solid fa-pencil"></i></a>
+                                                <button type="button" class="btn btn-sm btn-danger my-1" data-bs-toggle="modal" data-bs-target="#bookingDeleteModal" onclick="addDeleteId('bookingDeleteKey', <?php echo $hb['id']; ?>)"><i class="fa-solid fa-trash"></i></button>
+                                            <?php } else { ?>
+                                                <p class="m-0 text-danger">Closed</p>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -167,14 +171,14 @@ include $absoluteDir . "controller/dashboardController.php";
                                     </div>
                                 </div>
                             </div>
-                        <?php } else { ?>
-                            <div class="lightAccentBack p-3 rounded-3">
-                                <h5 class="fw-bold">No Bookings</h5>
-                                <p>There are no Venues booked by you. Click <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php') ?>" class="text-decoration-none primaryColor fw-bold">here</a> to book a venue now</p>
-                            </div>
-                        <?php } ?>
-                    </table>
-                </div>
+                        </table>
+                    </div>
+                <?php } else { ?>
+                    <div class="lightAccentBack p-3 rounded-3">
+                        <h5 class="fw-bold">No Bookings</h5>
+                        <p>There are no Venues booked by you. Click <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php') ?>" class="text-decoration-none primaryColor fw-bold">here</a> to book a venue now</p>
+                    </div>
+                <?php } ?>
             </div>
             <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active show' : null ?>" id="announcements" role="tabpanel">
                 <h3>Announcements</h3>
@@ -192,6 +196,7 @@ include $absoluteDir . "controller/dashboardController.php";
                     ?>
                             <div class="my-3 <?php echo $announcementCompleted ? 'darkAccentBack' : null ?> p-3 shadow rounded-3 d-block d-lg-flex align-items-center justify-content-between">
                                 <div>
+                                    <small class="d-block text-body-tertiary"><?php echo $announcement['announcement_id']; ?></small>
                                     <div class="d-flex align-items-center mb-2">
                                         <h5 class="m-0">
                                             <?php echo $announcement['announcement_title']; ?>
@@ -203,11 +208,11 @@ include $absoluteDir . "controller/dashboardController.php";
                                     </p>
                                     <div class="d-flex align-items-center">
                                         <p>
-                                            <i class="fa-regular fa-calendar"></i>
+                                            <i class="fa-regular fa-calendar text-body-tertiary"></i>
                                             <?php echo $announcement['announcement_date']; ?>
                                         </p>
                                         <p class="ms-2">
-                                            <i class="fa-regular fa-hourglass-half"></i>
+                                            <i class="fa-regular fa-hourglass-half text-body-tertiary"></i>
                                             <?php echo $announcement['announcement_time'];
                                             ?>
                                         </p>

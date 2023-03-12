@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL UNIQUE,
   `password` longtext NOT NULL,
   `dept` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `hall_bookings` (
   `hall_booking_date` date NOT NULL,
   `hall_booking_time` varchar(255) NOT NULL,
   `hall_booking_purpose` varchar(255) NOT NULL,
-  `booking_id` varchar(255) NOT NULL,
+  `booking_id` varchar(255) NOT NULL UNIQUE,
   `user_id` int(11) NOT NULL
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `announcement_message` longtext NOT NULL,
   `announcement_date` date NOT NULL,
   `announcement_time` time NOT NULL,
-  `announcement_id` varchar(255) NOT NULL,
+  `announcement_id` varchar(255) NOT NULL UNIQUE,
   `user_id` varchar(255) NOT NULL
 );
 

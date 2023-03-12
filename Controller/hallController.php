@@ -5,6 +5,8 @@ include $absoluteDir . "/model/baseModel.php";
 include $absoluteDir . "/model/hallModel.php";
 
 $showDate = false;
+$showCalendar = false;
+$hallName = null;
 $bookedTimeSlots = [];
 
 $latestHallBookings = retrieveLatestHallBookings($conn, $hallBookingsTable);
@@ -23,21 +25,33 @@ if (isset($_REQUEST["searchHalls"]) || isset($_SESSION['hallName'])) {
     }
 }
 
-if (isset($_REQUEST['bookHall'])) {
+if (isset($_REQUEST['upsertBooking'])) {
     if (!isset($_SESSION['userId'])) {
         header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=error&alertMainText=Not%20Logged%20In!&alertSubText=Please%20login%20and%20try%20again");
         exit();
     }
-    $hallName = $_SESSION['hallName'];
+
+    $action = $_REQUEST['upsertBooking'];
+
+    $hallName = !empty($_REQUEST['hallName']) ? $_REQUEST['hallName'] : $_SESSION['hallName'];
     $hallBookingDate = $_REQUEST['hallBookingDate'];
     $hallBookingTime = $_REQUEST['hallBookingTime'];
     $hallBookingPurpose = $_REQUEST['hallBookingPurpose'];
     $userId = $_SESSION['userId'];
-    insertOne($conn, "hall_bookings", ["hall_name", "hall_booking_date", "hall_booking_time", "hall_booking_purpose", "booking_id", "user_id"], [$hallName, $hallBookingDate, $hallBookingTime, $hallBookingPurpose, $uuid->toString(), $userId]);
 
-    // Clear required session variables for Hall Booking
-    unset($_SESSION['hallName']);
-    unset($_SESSION['currentMonth']);
+    $bookingId = !empty($_REQUEST['bookingId']) ? $_REQUEST['bookingId'] : $uuid->toString();
+
+    if ($action == "create") {
+        insertOne($conn, "hall_bookings", ["hall_name", "hall_booking_date", "hall_booking_time", "hall_booking_purpose", "booking_id", "user_id"], [$hallName, $hallBookingDate, $hallBookingTime, $hallBookingPurpose, $bookingId, $userId]);
+
+        // Clear required session variables for Hall Booking
+        unset($_SESSION['hallName']);
+        unset($_SESSION['currentMonth']);
+    } else {
+        updateOne($conn, $hallBookingsTable, ["hall_name" => $hallName, "hall_booking_date" => $hallBookingDate, "hall_booking_time" => $hallBookingTime, "hall_booking_purpose" => $hallBookingPurpose, "user_id" => $userId], "booking_id", $bookingId);
+        header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20booking%20has%20been%20updated%20successfully");
+        exit();
+    }
 
     header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Booking%20Successful!&alertSubText=Your%20booking%20has%20been%20made%20successfully");
     exit();
@@ -63,8 +77,19 @@ if (isset($_POST['today'])) {
 }
 
 if (isset($_REQUEST["hallBookingDate"])) {
-    $rows = retrieveTimeSlots($conn, $_REQUEST["hallBookingDate"], $_SESSION['hallName']);
+    $rows = retrieveTimeSlots($conn, $_REQUEST["hallBookingDate"], isset($_SESSION['hallName']) ? $_SESSION['hallName'] : $hallName);
     foreach ($rows as $row) {
         $bookedTimeSlots[] = $row['hall_booking_time'];
     }
+}
+
+if (isset($_REQUEST["hallBookingId"])) {
+    $hallBookingId = $_REQUEST["hallBookingId"];
+    $existingBooking = retrieveOneRecord($conn, $hallBookingsTable, ["booking_id" => $hallBookingId]);
+    $fetchedRecords = retrieveTimeSlots($conn, $existingBooking['hall_booking_date'], $existingBooking['hall_name']);
+    foreach ($fetchedRecords as $fr) {
+        $bookedTimeSlots[] = $fr['hall_booking_time'];
+    }
+    $showCalendar = true;
+    $showDate = true;
 }

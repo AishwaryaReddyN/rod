@@ -14,45 +14,41 @@ include $absoluteDir . "views/components/navbar.php";
             </ol>
         </nav>
     </div>
+
     <div class="container">
         <div class="primaryLightAccentBack p-3 rounded-3">
-            <h2 class="fw-bold"><i class="fa-regular fa-file-lines"></i> About Us</h2>
+            <h2 class="fw-bold m-0"><i class="fa-regular fa-file-lines"></i> About Us</h2>
         </div>
-        <h3 class="mt-4 ms-1">The Beginning</h3>
-        <p class="fw-normal ms-1 ">St. Francis College for Women is a Catholic Minority Institution founded by the Sisters of Charity of Sts. Bartolomea Capitanio and Vincenza Gerosa in 1959, for the education of women. The college derives its inspiration from the person and teachings of Jesus Christ, who is its norm, protector and guide</p>  
-        <h3 class="mt-4 ms-1">Vision</h3>
-        <p class="fw-normal ms-1">Inspired by the visionary dynamism of St. Bartholomea, the Foundress of the Sisters of Charity, St. Francis College has its vision “Holistic Education for the Empowerment of Women"</p>
-        <h3 class="mt-4 ms-1">Mission</h3>
-        <div class="content">
-              Motivating students to become
+
+        <div class="container">
+            <h3 class="mt-4">The Beginning</h3>
+            <p>St. Francis College for Women is a Catholic Minority Institution founded by the Sisters of Charity of Sts. Bartolomea Capitanio and Vincenza Gerosa in 1959, for the education of women. The college derives its inspiration from the person and teachings of Jesus Christ, who is its norm, protector and guide</p>
+
+            <h3 class="mt-4">Vision</h3>
+            <p>Inspired by the visionary dynamism of St. Bartholomea, the Foundress of the Sisters of Charity, St. Francis College has its vision “Holistic Education for the Empowerment of Women"</p>
+
+            <div>
+                <h3 class="mt-4">Mission</h3>
+                Motivating students to become
+                <div class="text-left">
+                    <ul>
+                        <li class="list-unstyled"><i class="fas fa-check-double"></i> Intellectually Competent</li>
+                        <li class="list-unstyled"><i class="fas fa-check-double"></i> Morally Upright</li>
+                        <li class="list-unstyled"><i class="fas fa-check-double"></i> Socially Committed</li>
+                        <li class="list-unstyled"><i class="fas fa-check-double"></i> Emotionally Stable </li>
+                        <li class="list-unstyled"><i class="fas fa-check-double"></i> Spiritually Inspired</li>
+                        <li class="list-unstyled"><i class="fas fa-check-double"></i> Patriotic Women citizens of India</li>
+                    </ul>
+                </div>
             </div>
-            <div class="text-left content" data-aos="fade-up">
-              <ul>
-                <li class="list-unstyled"><i class="fas fa-check-double"></i> Intellectually Competent</li>
-                <li class="list-unstyled"><i class="fas fa-check-double"></i> Morally Upright</li>
-                <li class="list-unstyled"><i class="fas fa-check-double"></i> Socially Committed</li>
-                <li class="list-unstyled"><i class="fas fa-check-double"></i> Emotionally Stable </li>
-                <li class="list-unstyled"><i class="fas fa-check-double"></i> Spiritually Inspired</li>
-                <li class="list-unstyled"><i class="fas fa-check-double"></i> Patriotic Women citizens of India</li>
-              </ul>
+        </div>
+
+        <div class="my-4">
+            <div class="primaryLightAccentBack p-3 rounded-3">
+                <h2 class="fw-bold m-0"><i class="fa-solid fa-desktop"></i> Reception Office Digitization</h2>
             </div>
-          </div>
-
+            <p class="my-4">Digitization is the process of converting information into a digital format. Digitized information is easier to store, access, and share. Flexibility is one of the chief assets of digital information. It is easy to edit, reformat and to commit print in a variety of iterations without effort required to produce hard copy by manually writing. We can create an endless number of identical copies from a digital file, because the file does not decay by the virtue of coping.</p>
+        </div>
+    </div>
 </div>
-
-<div class="container mt-4">
-        <div class="primaryLightAccentBack p-3 rounded-3">
-            <h2 class="fw-bold"><i class="fa-solid fa-desktop"></i> Reception Office Digitization</h2>
-            <h3 class="mt-4 ms-1"></h3>
-</div>
-        <p class="fw-normal ms-1 mt-4 mb-4">Digitization is the process of converting information into a digital format. Digitized information is easier to store, access, and share. Flexibility is one of the chief assets of digital information . It is easy to edit, reformat and to commit print in a variety of iterations without effort required to produce hard copy by manually writing.
-        We can create an endless number of identical copies from a digital file, because the file does not decay by the virtue of coping.</p>
-
-
-
-
-
-</div>
-
-
 <?php include $absoluteDir . "views/components/footer.php"; ?>

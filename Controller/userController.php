@@ -22,46 +22,42 @@ if (isset($_REQUEST["signup"])) {
     } else if (!str_contains($email, "@sfc.ac.in")) {
         $email = $email . "@sfc.ac.in";
     }
-    $rows = retrieveRecords($conn, 'users', ["email" => $email]);
-    foreach ($rows as $r) {
-        if ($email == $r["email"]) {
-            header("Location: " . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=error&alertMainText=Email%20already%20exists&alertSubText=Please%20try%20logging%20in%20or%20use%20a%20different%20email%20address");
-            exit();
-        }
-    }
-    insertOne($conn, "users", ["username", "email", "password", "dept", "role"], [$username, $email, $hashedPassword, $dept, "user"]);
-    $rows = retrieveRecords($conn, 'users', ['email' => $email]);
 
-    foreach ($rows as $r) {
-        if ($email == $r["email"]) {
-            $_SESSION["username"] = $r["username"];
-            $_SESSION["userId"] = $r["id"];
-            header("Location:" . $_ENV['BASE_DIR']);
-            exit();
-        } else {
-            header("Location:" . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=success&alertMainText=Account%created%successfully&alertSubText=Please%20logins");
-            exit();
-        }
+    $matchedRecords = retrieveOneRecord($conn, 'users', ["email" => $email]);
+    if (!empty($matchedRecords)) {
+        header("Location: " . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=error&alertMainText=Email%20already%20exists&alertSubText=Please%20try%20logging%20in%20or%20use%20a%20different%20email%20address");
+        exit();
+    }
+
+    insertOne($conn, "users", ["username", "email", "password", "dept", "role"], [$username, $email, $hashedPassword, $dept, "user"]);
+
+    $matchedRecords = retrieveOneRecord($conn, 'users', ['email' => $email]);
+    if (!empty($matchedRecords)) {
+        $_SESSION["username"] = $matchedRecords["username"];
+        $_SESSION["userId"] = $matchedRecords["id"];
+        header("Location:" . $_ENV['BASE_DIR'] . "?alertType=success&alertMainText=Account%20created%20successfully.&alertSubText=You%20can%20now%20explore%20the%20features.");
+        exit();
+    } else {
+        header("Location:" . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=error&alertMainText=Something%20went%20wrong&alertSubText=Please%20try%20again");
+        exit();
     }
 }
 
 if (isset($_REQUEST["login"])) {
     $inputEmail = $_POST["email"];
     $inputPassword = $_POST["password"];
-    $rows = retrieveRecords($conn, 'users', ['email' => $inputEmail]);
-    if (mysqli_num_rows($rows) > 0) {
-        foreach ($rows as $r) {
-            if ($inputEmail == $r["email"]) {
-                if (password_verify($inputPassword, $r["password"])) {
-                    $_SESSION["username"] = $r["username"];
-                    $_SESSION["userId"] = $r["id"];
-                    header("Location:" . $_ENV['BASE_DIR']);
-                    exit();
-                }
-            }
+    $matchedRecords = retrieveOneRecord($conn, 'users', ['email' => $inputEmail]);
+    if (!empty($matchedRecords)) {
+        if (password_verify($inputPassword, $matchedRecords["password"])) {
+            $_SESSION["username"] = $matchedRecords["username"];
+            $_SESSION["userId"] = $matchedRecords["id"];
+            header("Location:" . $_ENV['BASE_DIR']);
+            exit();
+        } else {
+            header("Location:" . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=error&alertMainText=Incorrect%20password&alertSubText=Please%20try%20again&userType=existingUser");
+            exit();
         }
     } else {
-        echo "Email not found";
         header("Location:" . $_ENV['BASE_DIR'] . "views/loginSignup.php?alertType=error&alertMainText=Email%20not%20found&alertSubText=Please%20signup&userType=newUser");
         exit();
     }

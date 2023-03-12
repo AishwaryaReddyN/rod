@@ -8,7 +8,8 @@ function insertOne($conn, $tableName, $keys, $values)
     return $insertedFlag;
 }
 
-function updateOne($conn, $tableName, $arrayItems, $identifierKey, $identifierValue){
+function updateOne($conn, $tableName, $arrayItems, $identifierKey, $identifierValue)
+{
     $updateString = updateString($arrayItems);
     $query = "UPDATE $tableName SET $updateString Where $identifierKey = '$identifierValue'";
     mysqli_query($conn, $query);
@@ -23,6 +24,14 @@ function retrieveRecords($conn, $tableName, $values)
     return $records;
 }
 
+function retrieveOneRecord($conn, $tableName, $values)
+{
+    $valuesString = sqlStringWithValues($values, "`", "'", " AND ");
+    $sql = "SELECT * FROM $tableName WHERE $valuesString";
+    $records = mysqli_query($conn, $sql);
+    return mysqli_fetch_array($records);
+}
+
 function retrieveAllRecords($conn, $tableName)
 {
     $sql = "SELECT * FROM $tableName";
@@ -30,7 +39,8 @@ function retrieveAllRecords($conn, $tableName)
     return $records;
 }
 
-function deleteRecord($conn, $tableName, $identifier, $identifierValue){
+function deleteRecord($conn, $tableName, $identifier, $identifierValue)
+{
     $query = "DELETE FROM $tableName WHERE $identifier = '$identifierValue'";
     mysqli_query($conn, $query);
     return null;
@@ -85,13 +95,14 @@ function convertMonthToDate($hallMonth, $mode)
     }
 }
 
-function updateString($arrayItems){
+function updateString($arrayItems)
+{
     $newString = "";
-    foreach($arrayItems as $key=>$val){
-        if($key != "user_id")
-            $newString = $newString . $key . " = " . "'" .$val . "'" . ",";
+    foreach ($arrayItems as $key => $val) {
+        if ($key != "user_id")
+            $newString = $newString . $key . " = " . "'" . $val . "'" . ",";
         else
-            $newString = $newString . $key . " = " .$val . ",";
+            $newString = $newString . $key . " = " . $val . ",";
     }
 
     if (count($arrayItems) > 1) {
