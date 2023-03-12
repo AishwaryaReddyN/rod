@@ -11,6 +11,7 @@
         <div class="collapse navbar-collapse d-flex-lg align-items-center justify-content-end" id="navBarContent">
             <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php') ?>" class="nav-link py-2 py-lg-0 px-2 me-4 fs-5 fw-normal align-self-center text-secondary"><i class="fa-solid fa-star"></i> Bookings</a>
             <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/announcements.php') ?>" class="nav-link py-2 py-lg-0 px-2 me-4 fw-normal fs-5 align-self-center text-secondary"><i class="fa-solid fa-microphone-lines"></i> Announcements</a>
+            <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/Aboutus.php') ?>" class="nav-link py-2 py-lg-0 px-2 me-4 fs-5 fw-normal align-self-center text-secondary"><i class="fa-solid fa-graduation-cap"></i></i> About us</a>
             <?php if (!isset($_SESSION["username"])) { ?>
                 <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/loginSignup.php') ?>" class="btn btn-outline-dark fw-bolder">Login/Signup</a>
             <?php } else { ?>

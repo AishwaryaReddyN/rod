@@ -8,7 +8,7 @@ include $absoluteDir . "views/components/navbar.php";
     <?php include $absoluteDir . "views/components/alert.php"; ?>
 </div>
 <!-- Hero Section -->
-<div class="container d-flex align-items-center mt-5 mt-lg-0 text-cter" style="min-height: 85vh;">
+<div class="container d-flex align-items-center mt-5 mt-lg-0" style="min-height: 85vh;">
     <div class="row">
         <div class="col-12 col-lg-3 d-flex align-items-center">
             <div class="text-center text-lg-start">
@@ -37,6 +37,7 @@ include $absoluteDir . "views/components/navbar.php";
                         <h4 class="ps-2 m-0 align-self-center">Announcements</h4>
                         <h6 class="ps-2 m-0 align-self-center text-body-secondary">Announcements made simpler </h6>
                     </div>
+                    
                 </div>
             </div>
         </div>
