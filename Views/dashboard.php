@@ -108,7 +108,7 @@ include $absoluteDir . "controller/dashboardController.php";
                 <div class="accordion mb-3 dashboardAccordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header rounded-3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hallBookingSearch" aria-expanded="true" aria-controls="collapseOne">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#hallBookingSearch" aria-expanded="true" aria-controls="collapseOne">
                                 Search Booking
                             </button>
                         </h2>
@@ -217,7 +217,7 @@ include $absoluteDir . "controller/dashboardController.php";
                 <div class="accordion mb-3 dashboardAccordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header rounded-3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#announcementSearch" aria-expanded="true" aria-controls="collapseOne">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#announcementSearch" aria-expanded="true" aria-controls="collapseOne">
                                 Search Announcement
                             </button>
                         </h2>
