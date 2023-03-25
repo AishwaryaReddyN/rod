@@ -9,6 +9,10 @@ include $absoluteDir . "/model/userModel.php";
 $allHallBookings = null;
 $allAnnouncements = null;
 
+$dashboardData = true;
+$bookingData = false;
+$announcementData = false;
+
 if (!isset($_SESSION['username'])) {
     header("Location: " . $_ENV['BASE_DIR'] . "/views/loginSignUp.php");
     exit();
@@ -30,13 +34,35 @@ if (isset($_REQUEST["dashboardShowData"])) {
         } else {
             $allHallBookings = retrieveHallBookingsByDateRange($conn, $hallBookingsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
         }
+        $dashboardData = false;
+        $bookingData = true;
+        $announcementData = false;
     } else if ($_REQUEST["dashboardShowData"] == "announcements") {
         if (!empty($userId)) {
             $allAnnouncements = retrieveAnnouncementsByUserId($conn, $announcementsTable, $userId);
         } else {
             $allAnnouncements = retrieveAnnouncementsByDateRange($conn, $announcementsTable, date('Y-m-d'), date('Y-m-d', strtotime(date('Y-m-d') . ' +30 days')), $userId);
         }
+        $dashboardData = false;
+        $bookingData = false;
+        $announcementData = true;
     }
+}
+
+if (isset($_REQUEST["searchBooking"])) {
+    $bookingId = $_REQUEST["bookingId"];
+    $allHallBookings = retrieveHallBookingsByBookingId($conn, $hallBookingsTable, $bookingId);
+    $dashboardData = false;
+    $bookingData = true;
+    $announcementData = false;
+}
+
+if (isset($_REQUEST["searchAnnouncement"])) {
+    $announcementId = $_REQUEST["announcementId"];
+    $allAnnouncements = retrieveAnnouncmentsByAnnouncementId($conn, $announcementsTable, $announcementId);
+    $dashboardData = false;
+    $bookingData = false;
+    $announcementData = true;
 }
 
 if (isset($_POST['deleteAnnouncement'])) {

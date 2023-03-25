@@ -2,195 +2,214 @@
 
 /* Variables */
 :root {
-  --primary: #b34734;
-  --primaryLightAccent: #ffedea;
-  --secondary: #fbbbbb;
-  --accent: #2486be;
-  --light: #ffffff;
-  --lightAccent: #f5f2f2;
-  --dark: #2d3342;
-  --darkAccent: #dddddd;
-  --loginBg: #cfe4c44f;
+    --primary: #b34734;
+    --primaryLightAccent: #ffedea;
+    --secondary: #fbbbbb;
+    --accent: #2486be;
+    --light: #ffffff;
+    --lightAccent: #f5f2f2;
+    --dark: #2d3342;
+    --darkAccent: #dddddd;
+    --loginBg: #cfe4c44f;
 }
+
 /* Globals Styles */
 .primaryBack {
-  background: var(--primary);
+    background: var(--primary);
 }
+
 .primaryLightAccentBack {
-  background: var(--primaryLightAccent);
+    background: var(--primaryLightAccent);
 }
+
 .secondaryBack {
-  background: var(--secondary);
+    background: var(--secondary);
 }
+
 .accentBack {
-  background: var(--accent);
+    background: var(--accent);
 }
+
 .lightBack {
-  background: var(--light);
+    background: var(--light);
 }
+
 .lightAccentBack {
-  background: var(--lightAccent);
+    background: var(--lightAccent);
 }
+
 .darkBack {
-  background: var(--dark);
+    background: var(--dark);
 }
+
 .loginBack {
-  background: var(--loginBg);
+    background: var(--loginBg);
 }
 
 .darkAccentBack {
-  background: var(--darkAccent);
+    background: var(--darkAccent);
 }
 
 .primaryColor {
-  color: var(--primary);
+    color: var(--primary);
 }
+
 .primaryLightAccentColor {
-  color: var(--primaryLightAccent);
+    color: var(--primaryLightAccent);
 }
+
 .secondaryColor {
-  color: var(--secondary);
+    color: var(--secondary);
 }
+
 .accentColor {
-  color: var(--accent);
+    color: var(--accent);
 }
+
 .lightColor {
-  color: var(--light);
+    color: var(--light);
 }
+
 .lightAccentColor {
-  color: var(--lightAccent);
+    color: var(--lightAccent);
 }
+
 .darkColor {
-  color: var(--dark);
+    color: var(--dark);
 }
 
 .darkAccentColor {
-  color: var(--darkAccent);
+    color: var(--darkAccent);
 }
 
 body {
-  font-family: "Ubuntu", sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 h1 h2 h3 h4 h5 h6 {
-  font-family: "Roboto Slab";
+    font-family: "Roboto Slab";
 }
 
 .baseHover:hover {
-  color: var(--secondary) !important;
+    color: var(--secondary) !important;
 }
 
 /* Bootstrap Overwriting */
 .nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  color: var(--light) !important;
-  background-color: var(--primary) !important;
+.nav-pills .show>.nav-link {
+    color: var(--light) !important;
+    background-color: var(--primary) !important;
 }
 
 .nav-link {
-  color: var(--dark) !important;
+    color: var(--dark) !important;
 }
+
 .nav-link:hover {
-  color: var(--secondary) !important;
+    color: var(--secondary) !important;
 }
 
 .accordion {
-  --bs-accordion-border-width: 0px !important;
+    --bs-accordion-border-width: 0px !important;
 }
 
 .accordion-button {
-  background-color: none !important;
+    background-color: none !important;
 }
 
 .accordion-button:focus {
-  outline: none !important;
-  border-color: none !important;
-  box-shadow: none !important;
+    outline: none !important;
+    border-color: none !important;
+    box-shadow: none !important;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: var(--light) !important;
-  outline: none !important;
-  /* color: var(--primary); */
-  font-weight: 500;
-  transition: 1s ease;
+    background-color: var(--light) !important;
+    outline: none !important;
+    /* color: var(--primary); */
+    font-weight: 500;
+    transition: 1s ease;
 }
 
 /* Chatbot */
 .chatIcon {
-  background-color: var(--dark);
-  color: var(--light);
-  width: 3.3rem !important;
-  height: 3.3rem !important;
-  border-radius: 50%;
-  padding: 1rem;
-  position: fixed;
-  bottom: 1rem;
-  right: 2rem;
-  z-index: 999;
-  cursor: pointer;
-  transition: 0.5s ease;
+    background-color: var(--dark);
+    color: var(--light);
+    width: 3.3rem !important;
+    height: 3.3rem !important;
+    border-radius: 50%;
+    padding: 1rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 999;
+    cursor: pointer;
+    transition: 0.5s ease;
 }
 
 #chatBox {
-  background-color: var(--lightAccent);
-  color: var(--dark);
-  width: 20rem;
-  position: fixed;
-  bottom: 5rem;
-  right: 2rem;
-  z-index: 999;
-  transition: 0.5s ease;
-  display: none;
+    background-color: var(--lightAccent);
+    color: var(--dark);
+    width: 20rem;
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    z-index: 999;
+    transition: 0.5s ease;
+    display: none;
 }
 
 #chatCloseIcon {
-  display: none;
-  transition: transform 200ms linear 0s;
-  transform-origin: calc(100% - 30px) center;
-  animation-duration: 250ms;
-  animation-fill-mode: forwards;
+    display: none;
+    transition: transform 200ms linear 0s;
+    transform-origin: calc(100% - 30px) center;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
 }
 
 .showIcon {
-  display: block;
+    display: block;
 }
 
 .hideIcon {
-  display: none;
+    display: none;
 }
 
 .rotate {
-  transition: transform 200ms linear 0s;
-  transform-origin: calc(100% - 30px) center;
-  animation-duration: 250ms;
-  animation-fill-mode: forwards;
+    transition: transform 200ms linear 0s;
+    transform-origin: calc(100% - 30px) center;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
 }
 
 #chatBotBody {
-  overflow-y: scroll;
-  height: 27rem;
-  padding: 0.5rem;
+    overflow-y: scroll;
+    height: 27rem;
+    padding: 0.5rem;
 }
 
 .botMessage {
-  background-color: var(--light);
-  color: var(--dark);
-  padding: 0.5rem;
-  border-radius: 0.5rem 0.5rem 0.5rem 0;
-  margin: 0.5rem;
-  width: 80%;
-  display: inline-block;
-  text-align: left;
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+    margin: 0.5rem;
+    width: 80%;
+    display: inline-block;
+    text-align: left;
 }
 
 .userMessage {
-  background-color: var(--dark);
-  color: var(--light);
-  padding: 0.5rem;
-  border-radius: 0.5rem 0.5rem 0 0.5rem;
-  display: inline-block;
-  margin: 0.5rem;
-  text-align: right;
-  width: 80%;
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0.5rem;
+    display: inline-block;
+    margin: 0.5rem;
+    text-align: right;
+    width: 80%;
+}
+
+.dashboardAccordion {
+    --bs-accordion-bg: var(--lightAccent) !important;
 }

@@ -27,7 +27,7 @@ if (isset($_POST['upsertAnnouncement'])) {
         exit();
     } else {
         updateOne($conn, $announcementsTable, ["announcement_title" => $title, "announcement_message" => $message, "announcement_date" => $date, "announcement_time" => $time, "user_id" => $userId], "announcement_id", $announcementId);
-        header("Location:" . $_ENV['BASE_DIR'] . "views/announcements.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20announcement%20has%20been%20updated%20successfully");
+        header("Location:" . $_ENV['BASE_DIR'] . "views/dashboard.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20announcement%20has%20been%20updated%20successfully");
         exit();
     }
 }

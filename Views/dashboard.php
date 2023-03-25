@@ -26,15 +26,15 @@ include $absoluteDir . "controller/dashboardController.php";
 
     <div class="d-sm-flex align-items-start">
         <div class="nav flex-column nav-pills me-3 p-3 rounded shadow" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button type="submit" class="nav-link <?php echo !isset($_POST['dashboardShowData']) ? 'active' : null ?>" data-bs-toggle="pill" data-bs-target="#dashboard" role="tab" aria-selected="false">Dashboard</button>
+            <button type="submit" class="nav-link <?php echo $dashboardData ? 'active' : null ?>" data-bs-toggle="pill" data-bs-target="#dashboard" role="tab" aria-selected="false">Dashboard</button>
             <form method="POST">
-                <button type="submit" class="nav-link w-100 <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active' : null ?>" name="dashboardShowData" value="hallBookings" id="v-pills-profile-tab" data-bs-toggle="pill" ] data-bs-target="#halls" role="tab" aria-selected="false">Bookings
+                <button type="submit" class="nav-link w-100 <?php echo $bookingData ? 'active' : null ?>" name="dashboardShowData" value="hallBookings" id="v-pills-profile-tab" data-bs-toggle="pill" ] data-bs-target="#halls" role="tab" aria-selected="false">Bookings
                 </button>
-                <button type="submit" class="nav-link w-100 <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active' : null ?>" name="dashboardShowData" value="announcements" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#announcements" role="tab" aria-selected="false">Announcements</button>
+                <button type="submit" class="nav-link w-100 <?php echo $announcementData ? 'active' : null ?>" name="dashboardShowData" value="announcements" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#announcements" role="tab" aria-selected="false">Announcements</button>
             </form>
         </div>
         <div class="tab-content w-100 mt-5 mt-lg-0">
-            <div class="tab-pane fade <?php echo !isset($_POST['dashboardShowData']) ? 'active show' : null ?>" id="dashboard" role="tabpanel">
+            <div class="tab-pane fade <?php echo $dashboardData ? 'active show' : null ?>" id="dashboard" role="tabpanel">
                 <div class="shadow p-3 rounded">
                     <h4>Latest Announcements</h4>
                     <div>
@@ -101,10 +101,32 @@ include $absoluteDir . "controller/dashboardController.php";
                     <?php } ?>
                 </div>
             </div>
-            <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'hallBookings' ? 'active show' : null ?>" id="halls" role="tabpanel">
+            <div class="tab-pane fade <?php echo $bookingData ? 'active show' : null ?>" id="halls" role="tabpanel">
                 <h3>Booked Venues</h3>
+
+                <!-- Search Bookings -->
+                <div class="accordion mb-3 dashboardAccordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header rounded-3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hallBookingSearch" aria-expanded="true" aria-controls="collapseOne">
+                                Search Booking
+                            </button>
+                        </h2>
+                        <div id="hallBookingSearch" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body lightBack">
+                                <form method="POST" class="d-flex align-items-center justify-content-between">
+                                    <input type="text" placeholder="Booking Id" name="bookingId" class="form-control rounded-0 rounded-start border-end-0">
+                                    <button type="submit" name="searchBooking" class="btn border border-start-0 rounded-0 rounded-end">
+                                        <i class="fa-solid fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <?php if ($allHallBookings && mysqli_num_rows($allHallBookings) > 0) { ?>
-                    <div class="table-responsive p-3">
+                    <div class="table-responsive">
                         <table class="table shadow rounded-3">
                             <thead class="table-dark">
                                 <tr>
@@ -113,6 +135,9 @@ include $absoluteDir . "controller/dashboardController.php";
                                     <th scope="col">Booking Date</th>
                                     <th scope="col">Booking Time</th>
                                     <th scope="col">Booking Purpose</th>
+                                    <?php if ($_SESSION['username'] == "admin") { ?>
+                                        <th scope="col">Booked By</th>
+                                    <?php } ?>
                                     <th scope="col">Controls</th>
                                 </tr>
                             </thead>
@@ -141,6 +166,11 @@ include $absoluteDir . "controller/dashboardController.php";
                                         <td>
                                             <?php echo $hb['hall_booking_purpose']; ?>
                                         </td>
+                                        <?php if (!empty($hb['email'])) { ?>
+                                            <td>
+                                                <?php echo $hb['email'] ?>
+                                            </td>
+                                        <?php } ?>
                                         <td class="text-center">
                                             <?php if (!$bookingCompleted) { ?>
                                                 <a href="<?php echo ($_ENV['BASE_DIR'] . 'views/hallBookings.php?hallBookingId=' . $hb['booking_id']) ?>" class="btn btn-sm btn-dark my-1"><i class="fa-solid fa-pencil"></i></a>
@@ -180,8 +210,30 @@ include $absoluteDir . "controller/dashboardController.php";
                     </div>
                 <?php } ?>
             </div>
-            <div class="tab-pane fade <?php echo isset($_POST['dashboardShowData']) && $_POST['dashboardShowData'] == 'announcements' ? 'active show' : null ?>" id="announcements" role="tabpanel">
+            <div class="tab-pane fade <?php echo $announcementData ? 'active show' : null ?>" id="announcements" role="tabpanel">
                 <h3>Announcements</h3>
+
+                <!-- Search Announcements -->
+                <div class="accordion mb-3 dashboardAccordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header rounded-3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#announcementSearch" aria-expanded="true" aria-controls="collapseOne">
+                                Search Announcement
+                            </button>
+                        </h2>
+                        <div id="announcementSearch" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body lightBack">
+                                <form method="POST" class="d-flex align-items-center justify-content-between">
+                                    <input type="text" placeholder="Announcement Id" name="announcementId" class="form-control rounded-0 rounded-start border-end-0">
+                                    <button type="submit" name="searchAnnouncement" class="btn border border-start-0 rounded-0 rounded-end">
+                                        <i class="fa-solid fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div>
                     <?php if ($allAnnouncements && mysqli_num_rows($allAnnouncements) > 0) {
                         foreach ($allAnnouncements as $announcement) {
@@ -216,6 +268,12 @@ include $absoluteDir . "controller/dashboardController.php";
                                             <?php echo $announcement['announcement_time'];
                                             ?>
                                         </p>
+                                        <?php if (!empty($announcement['email'])) { ?>
+                                            <p class="ms-2">
+                                                <i class="fa-solid fa-envelope text-body-tertiary"></i>
+                                                <?php echo $announcement['email'] ?>
+                                            </p>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div>

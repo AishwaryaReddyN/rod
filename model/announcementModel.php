@@ -37,7 +37,7 @@ function retrieveAnnouncementsByDateRange($conn, $announcementsTable, $announcem
     if (!empty($userId)) {
         $sql = "SELECT * FROM $announcementsTable WHERE `user_id` = $userId AND `announcement_date` BETWEEN '$announcementsStartDate' AND '$announcementsEndDate'";
     } else {
-        $sql = "SELECT * FROM $announcementsTable WHERE `announcement_date` BETWEEN '$announcementsStartDate' AND '$announcementsEndDate'";
+        $sql = "SELECT * FROM $announcementsTable LEFT JOIN `users` ON `users`.`id` = $announcementsTable.`user_id` WHERE $announcementsTable.`announcement_date` BETWEEN '$announcementsStartDate' AND '$announcementsEndDate'";
     }
     $records = mysqli_query($conn, $sql);
     return $records;
@@ -46,6 +46,13 @@ function retrieveAnnouncementsByDateRange($conn, $announcementsTable, $announcem
 function retrieveAnnouncementsByUserId($conn, $announcementsTable, $userId)
 {
     $sql = "SELECT * FROM $announcementsTable WHERE `user_id` = $userId ORDER BY `announcement_date` DESC Limit 10";
+    $records = mysqli_query($conn, $sql);
+    return $records;
+}
+
+function retrieveAnnouncmentsByAnnouncementId($conn, $announcementsTable, $announcementId)
+{
+    $sql = "SELECT * FROM `$announcementsTable` LEFT JOIN `users` ON `users`.`id` = $announcementsTable.`user_id` WHERE `announcement_id` = '$announcementId'";
     $records = mysqli_query($conn, $sql);
     return $records;
 }

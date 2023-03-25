@@ -52,7 +52,7 @@ if (isset($_REQUEST['upsertBooking'])) {
         exit();
     } else {
         updateOne($conn, $hallBookingsTable, ["hall_name" => $hallName, "hall_booking_date" => $hallBookingDate, "hall_booking_time" => $hallBookingTime, "hall_booking_purpose" => $hallBookingPurpose, "user_id" => $userId], "booking_id", $bookingId);
-        header("Location:" . $_ENV['BASE_DIR'] . "views/hallBookings.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20booking%20has%20been%20updated%20successfully");
+        header("Location:" . $_ENV['BASE_DIR'] . "views/dashboard.php?alertType=success&alertMainText=Updation%20Successful!&alertSubText=Your%20booking%20has%20been%20updated%20successfully");
         exit();
     }
 }

@@ -43,7 +43,7 @@ function retrieveHallBookingsByDateRange($conn, $tableName, $hallBookingStartDat
     if (!empty($userId)) {
         $sql = "SELECT * FROM $tableName WHERE `user_id` = $userId AND `hall_booking_date` BETWEEN '$hallBookingStartDate' AND '$hallBookingEndDate'";
     } else {
-        $sql = "SELECT * FROM $tableName WHERE `hall_booking_date` BETWEEN '$hallBookingStartDate' AND '$hallBookingEndDate'";
+        $sql = "SELECT * FROM $tableName LEFT JOIN `users` ON `users`.`id` = $tableName.`user_id` WHERE $tableName.`hall_booking_date` BETWEEN '$hallBookingStartDate' AND '$hallBookingEndDate' ";
     }
     $records = mysqli_query($conn, $sql);
     return $records;
@@ -59,6 +59,13 @@ function retrieveHallBookingsByUserId($conn, $tableName, $userId)
 function retrieveLatestHallBookings($conn, $tableName)
 {
     $sql = "SELECT * FROM $tableName ORDER BY `hall_booking_date` LIMIT 5";
+    $records = mysqli_query($conn, $sql);
+    return $records;
+}
+
+function retrieveHallBookingsByBookingId($conn, $hallBookingsTable, $bookingId)
+{
+    $sql = "SELECT * FROM `$hallBookingsTable` LEFT JOIN `users` ON `users`.`id` = $hallBookingsTable.`user_id` WHERE `booking_id` = '$bookingId'";
     $records = mysqli_query($conn, $sql);
     return $records;
 }
